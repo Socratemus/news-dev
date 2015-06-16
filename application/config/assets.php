@@ -10,11 +10,14 @@ $config = array(
     ),
     'css' => array(
         'public/addons/bootstrap-3.3.4-dist/css/bootstrap.css',
+        'public/addons/font-awesome-4.3.0/css/font-awesome.css',
         'public/css/general.css',
         'public/css/main.css'
     ),
     'js' => array(
-        
+        'public/addons/jquery/jquery-2.1.4.js',
+        'public/addons/bootstrap-3.3.4-dist/js/bootstrap.js',
+        'public/addons/jquery/jquery.marquee.min.js',
         'public/js/main.js'
     ),
     'inlinejs' => array(

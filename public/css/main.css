@@ -1,0 +1,249 @@
+/**
+ * DEFINE COLORS :
+ * 
+**/
+
+
+*,html{
+    
+}
+
+body{
+      background-color: #fefefe;    
+}
+
+.header-top{
+    height : 110px;
+    background: #781C1C;
+    color: #f9f9f9;
+}
+
+.main-menu li{
+    float :left;
+}
+
+.main-menu li a{
+    float : left;
+    /*border : 1px solid white;*/
+    padding : 5px 20px;
+    margin : 0px; 
+    font-size : 18px;
+    font-weight : 600;
+    color: #f9f9f9;;
+}
+
+.header-bottom {
+    height : 56px;
+    background: #19191a;
+    color: #f9f9f9;
+}
+
+#marque {
+    overflow : hidden; margin-top : 20px;
+    padding-left: 20px; padding-right : 20px;
+}
+
+#Wrapper {
+    padding-top : 25px;
+    min-height : 800px;
+    background-color: #fafafa;
+}
+
+.main-bottom{
+    padding-top : 30px;
+    background-color : #ffffff;
+    /*min-height : 200px;*/
+    margin-top : 50px;
+    padding-bottom : 30px;
+}
+
+.main-section-title{
+      border-bottom: 1px solid #eeeeee;
+}
+
+.pub-data{
+    color: #acacac;
+    margin-top : 8px;
+    margin-bottom : 7px;
+}
+
+.main-section-title > span{
+    display : inline-block;
+    /*margin-bottom : 15px;*/
+}
+.news-section{
+    padding-top : 20px;
+}
+.main-section-title a{
+    color: #222;
+}
+
+.main-section-title a:hover{
+    color: #5470c0;
+}
+
+#Footer {
+    /*height: 568px;*/
+    background: #19191a;
+    color: #f9f9f9;
+    padding-top :25px;
+}
+
+#Footer h3{
+    color : #f3f3f3;
+}
+
+.footer-top{
+    padding-bottom : 30px;
+    border-bottom : 1px solid #313131;
+}
+
+.links a {
+    font-size : 32px;
+    color : white;
+    margin : 5px;
+    display : inline-block; float : left;
+    /*border : 1px solid red; */
+    width : 45px; text-align : center;
+    border-radius : 5px;
+}
+
+.links a.facebook{
+    background-color : #3b5998;
+}
+
+.links a.twitter{
+    background-color : #55acee;
+}
+
+.links a.google-plus{
+    background-color : #d93e2d;
+}
+
+.links a.pinterest{
+    background-color : #c92619;
+}
+
+.side-nav{
+    
+}
+
+.nav-tabs.side-nav > li.active > a, .nav-tabs.side-nav > li.active > a:hover, .nav-tabs.side-nav > li.active > a:focus{
+    border-color: transparent;
+    border-bottom : 1px solid #b3b3b3;;
+}
+.nav-tabs.side-nav > li > a:hover {
+    border-color: transparent;
+    border-bottom : 1px solid #b3b3b3;;
+    background-color : transparent;
+}
+
+.nav-tabs.side-nav > li.active a {
+    border-color: transparent;
+    border-bottom : 1px solid #b3b3b3;;
+    background-color : transparent;
+}
+
+.side-nav > li a{
+    color: #3d3d3d;
+    font-weight: 500;
+    font-family: 'Roboto', sans-serif;
+    font-size: 16px;
+    text-transform: uppercase;
+    text-decoration: none;
+}
+
+ul.archive a {
+    font-size : 16px;
+}
+
+a.tag-name{margin-right : 4px;}
+
+a.tag-name:nth-child(2n){
+    font-size : 22px;
+}
+a.tag-name:nth-child(2n+1){
+    font-size : 18px;
+}
+a.tag-name:nth-child(2n+2){
+    font-size : 16px;
+}
+a.tag-name:nth-child(2n+3){
+    font-size : 12px;
+}
+
+/******************************************************************************/
+article.mn{
+    border-bottom: 1px solid #eee;
+    padding-bottom : 15px;
+    margin-bottom : 20px;
+}
+
+article.mn > div.cv-hld{
+    margin-bottom : 15px;
+}
+
+article.mn > div.cv-hld img{
+    width : 100%;
+}
+
+article.mn > .meta-data{
+    margin-top : 10px;
+}
+
+article.mn > .meta-data .pub-date{
+    color: #acacac;;
+}
+
+article.mn > .desc{
+    margin-top : 10px;
+}
+
+article.hz{
+    margin-bottom : 20px;
+}
+
+article.sb{
+    margin-bottom : 15px;
+    border-bottom: 1px solid #ebebeb;
+    padding-bottom : 15px;
+}
+
+article div.cv > img{width : 100%;}
+
+
+.article-title{
+    font-family: 'Oswald', sans-serif;
+    
+}
+
+h3.article-title{
+    font-size: 26px;
+    font-weight: 400;
+    line-height: 1.3;
+}
+
+
+h4.article-title{
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 1.3;
+}
+
+.article-title a {
+    color: #222;
+}
+
+ul.featured{
+    padding-left : 0;
+    /*font-family: 'Oswald', sans-serif;*/
+}
+
+ul.featured > li {
+    display: block;
+    margin: 0 0 15px;
+    padding: 0 0 15px;
+    border-bottom: 1px solid #eee;
+}
+
+/******************************************************************************/

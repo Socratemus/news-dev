@@ -14,10 +14,15 @@ class Inlinescript
     
     public function __construct(){
         $this->obj =& get_instance();
-        $confCssFiles = $this->obj->config->config['js'];
+        $confCssFiles = $this->obj->config->config['inlinejs'];
         foreach($confCssFiles as $css){
             $this->appendFile($css);
         }
+    }
+    
+    public function reset(){
+        $this->_append = array();
+        $this->_prepend = array();
     }
     
     public function appendFile($File){
@@ -50,11 +55,11 @@ class Inlinescript
     public function __toString(){
         $script = '';
         foreach($this->_prepend as $js ){
-            $script .= '<script type="text/javascript" src="'.$js.'"></script>
+            $script .= '<script type="text/javascript" src="'. base_url() . $js .'"></script>
         ';    
         }
         foreach($this->_append as $js ){
-            $script .= '<script type="text/javascript" src="'.$js.'"></script>
+            $script .= '<script type="text/javascript" src="'. base_url() . $js .'"></script>
         ';    
         }
         return $script;

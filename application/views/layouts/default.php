@@ -3,6 +3,7 @@
     
     <head>
         <?php echo meta($data['meta']);?>
+        
         <?php echo $this->headlink;?>
         
         <?php echo $this->headscript;?>
@@ -11,14 +12,17 @@
     
     <body>
         
-        <header>
-            
+        <header id="Header" class="container-fluid">
+            <?php $this->load->view('layouts/header.php',$data); ?>
         </header>
-       
-        <?php $this->load->view($view,$data); ?>   
+           
+        <section id="Wrapper" class="container-fluid">
+            <?php $this->load->view($view,$data); ?>       
+        </section>
         
-        <footer>
-            
+        
+        <footer id="Footer" class="container-fluid">
+            <?php $this->load->view('layouts/footer.php',$data); ?>
         </footer>
         
         <?php echo $this->inlinescript;?>

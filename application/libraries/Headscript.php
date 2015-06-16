@@ -20,6 +20,11 @@ class Headscript
         }
     }   
     
+    public function reset(){
+        $this->_append = array();
+        $this->_prepend = array();
+    }
+    
     public function appendFile($File){
         array_push($this->_append , $File);
         return $this;
@@ -50,11 +55,11 @@ class Headscript
     public function __toString(){
         $script = '';
         foreach($this->_prepend as $js ){
-            $script .= '<script type="text/javascript" src="'.$js.'"></script>
+            $script .= '<script type="text/javascript" src="'. base_url() . $js .'"></script>
         ';    
         }
         foreach($this->_append as $js ){
-            $script .= '<script type="text/javascript" src="'.$js.'"></script>
+            $script .= '<script type="text/javascript" src="'. base_url() . $js .'"></script>
         ';    
         }
         return $script;

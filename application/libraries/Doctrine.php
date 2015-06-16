@@ -40,9 +40,9 @@ class Doctrine {
     $config->setProxyNamespace('Proxies');
 
     // Set up logger
-    $logger = new EchoSQLLogger;
-    $config->setSQLLogger($logger);
-
+    // $logger = new EchoSQLLogger;
+    // $config->setSQLLogger($logger);
+    $config->addEntityNamespace("Entity", "models\Entities");
     $config->setAutoGenerateProxyClasses( TRUE );
 
     // Database connection information
@@ -56,5 +56,19 @@ class Doctrine {
 
     // Create EntityManager
     $this->em = EntityManager::create($connectionOptions, $config);
+  }
+  
+  public function generateDatabase(){
+      $em = $this->em;
+	    $tool = new \Doctrine\ORM\Tools\SchemaTool($em);
+        
+      $classes = array(
+          $em->getClassMetadata("Entity:User"),  
+          $em->getClassMetadata("Entity:Story"),
+          $em->getClassMetadata("Entity:Category"),
+          $em->getClassMetadata("Entity:Comment")
+      );
+      $tool->updateSchema($classes);
+      exit("done");
   }
 }

@@ -16,7 +16,15 @@ class Layout
     {
         $this->obj =& get_instance();
     }
-
+    
+    public function setView($View){
+        $this->view = $View;
+    }
+    
+    public function setViewFolder($Folder){
+        $this->viewFolder = $Folder;
+    }
+    
     function setLayout($layout)
     {
         $this->layout = $layout;

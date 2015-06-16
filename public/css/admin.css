@@ -1,0 +1,106 @@
+body{
+    margin: 0;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 12px;
+    line-height: 20px;
+    color: #333333;
+    background: #262626;
+}
+
+.header{
+    padding : 15px 0px;
+    color : #f3f3f3;
+    background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#333333), color-stop(0.85, #262626), to(#0d0d0d));
+    background-image: -webkit-linear-gradient(#333333, #262626 85%, #0d0d0d);
+    background-image: -moz-linear-gradient(#333333, #262626 85%, #0d0d0d);
+    background-image: -o-linear-gradient(#333333, #262626 85%, #0d0d0d);
+    background-image: linear-gradient(#333333, #262626 85%, #0d0d0d);
+}
+
+.main-menu{
+    color : #f3f3f3;
+    /*background-color: #3187bf;*/
+    /*padding-top : 10px; padding-bottom :10px;*/
+}
+
+.main-menu:after{
+    content : '';
+    clear : both;
+}
+
+.admin-nav{
+    padding-left : 0;
+    float : left;
+}
+
+.admin-nav li{
+    float : left;
+    background-color: #e4e4e4;
+    background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#f2f2f2), color-stop(85%, #ebebeb), to(#cccccc));
+    background-image: -webkit-linear-gradient(#f2f2f2, #ebebeb 85%, #cccccc);
+    background-image: -moz-linear-gradient(top, #f2f2f2, #ebebeb 85%, #cccccc);
+    background-image: -o-linear-gradient(#f2f2f2, #ebebeb 85%, #cccccc);
+    background-image: linear-gradient(#f2f2f2, #ebebeb 85%, #cccccc);
+    background-repeat: no-repeat;
+    border-radius: 3px 3px 0 0;
+    width: 102px;
+    text-align: center;
+    margin-right: 5px;
+    border-radius: 3px 3px 0 0;
+}
+
+.admin-nav li.active {
+  background: #2d85be;
+}
+
+.admin-nav li:hover{
+    background: #2d85be;
+}
+
+.admin-nav li:hover a{
+    color : white;
+}
+
+.admin-nav li.active a{ 
+    color : white;
+}
+.admin-nav li.active a i{
+    color : white;
+}
+
+.admin-nav li a{
+    text-align : center; display: block;
+    padding: 15px 4px;
+    font-size: 11px;
+    text-decoration: none;
+    color: #4d4d4d;
+    text-align: center;
+    font-weight: 300;
+    text-transform: uppercase;
+
+}
+
+.admin-nav li a > i{
+    color: #4d4d4d;
+    text-align: center;
+    display: block;
+    margin-bottom: 5px;
+    font-size: 16px;
+}
+
+
+.footer{
+    padding-top : 10px; padding-bottom :10px;
+    color : #f3f3f3;
+    background-color: #3187bf;
+}
+
+main{
+    padding-top : 15px;
+    padding-bottom : 15px;
+}
+
+.main-wrapper{
+    background : white;
+    min-height : 200px;
+}

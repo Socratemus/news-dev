@@ -6,9 +6,9 @@ class Headlink
 {
     protected $Files = array();
     
-    private $prepend = array();
+    private $_prepend = array();
     
-    private $append = array();
+    private $_append = array();
     
     var $obj;
     
@@ -22,23 +22,30 @@ class Headlink
         
     }
     
+    public function reset(){
+        $this->_append = array();
+        $this->_prepend = array();
+    }
+    
     public function appendStyleSheet($StyleSheet, $Position = false){
-        array_push($this->append , $StyleSheet);
+        array_push($this->_append , $StyleSheet);
+        return $this;
     }
     
     public function prependStyleSheet($StyleSheet , $Position = false){
-         array_push($this->prepend , $StyleSheet);
+         array_push($this->_prepend , $StyleSheet);
+         return $this;
     }
     
     public function __toString(){
         $cssLinks = '';
-        foreach($this->prepend as $css) {
-            $cssLinks .= '<link rel="stylesheet" type="text/css" href="'.$css.'">
+        foreach($this->_prepend as $css) {
+            $cssLinks .= '<link rel="stylesheet" type="text/css" href="'. base_url() .$css.'">
         ';
         }
         
-        foreach($this->append as $css) {
-            $cssLinks .= '<link rel="stylesheet" type="text/css" href="'.$css.'">
+        foreach($this->_append as $css) {
+            $cssLinks .= '<link rel="stylesheet" type="text/css" href="'. base_url() .$css.'">
         ';
         }
         
