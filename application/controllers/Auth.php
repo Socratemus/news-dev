@@ -57,22 +57,6 @@ class Auth extends CI_Controller {
 		}
     }
     
-    //Setting the first admin! Add security
-    public function reset(){
-        
-        $data = array(
-            'Firstname' => 'iancu',
-            'Lastname' => 'cornel',
-            'Username' => 'socratemus',
-            'Email'    => 'corneliu.iancu27@gmail.com',
-            'RealPassword' => 'Bucuresti91',
-            'Access' =>3
-        );
-        
-        $this->user_model->addUser($data);
-        echo 'we have an admin!';
-    }
-    
     /**
 	 * Logout the current user.
 	 */

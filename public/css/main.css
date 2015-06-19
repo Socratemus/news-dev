@@ -45,7 +45,7 @@ body{
 
 #Wrapper {
     padding-top : 25px;
-    min-height : 800px;
+    min-height : 200px;
     background-color: #fafafa;
 }
 
@@ -55,6 +55,10 @@ body{
     /*min-height : 200px;*/
     margin-top : 50px;
     padding-bottom : 30px;
+}
+
+#Header h1, #Header h2, #Header h3 , #Header h4{
+    color : white;
 }
 
 .main-section-title{
@@ -172,6 +176,44 @@ a.tag-name:nth-child(2n+3){
     font-size : 12px;
 }
 
+.title-big{
+    font-size : 46px;
+}
+
+.share a {
+    display: inline-block;
+    text-decoration: none;
+    font-size: 13px;
+    color: #fff;
+    font-weight: 500;
+    padding: 6px 15px;
+    border-radius: 2px;
+    margin: 0 0 0 20px;
+}
+
+.share a.twitter {
+    background: #3a93d8;
+}
+
+.share a.facebook {
+    background: #2e6cc8;
+}
+
+.share a.gplus {
+    background: #dd5042;
+}
+
+article .entry-content{
+    
+}
+
+article .entry-content p{
+    margin-bottom : 18px;
+}
+
+.article-footer h3 span{ color: #999;; font-weight : 300;}
+.article-footer h3 {font-size : 16px; font-family : "Roboto"; font-weight : 500;}
+.cv.author > img{border-radius : 50%;}
 /******************************************************************************/
 article.mn{
     border-bottom: 1px solid #eee;

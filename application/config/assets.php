@@ -22,5 +22,42 @@ $config = array(
     ),
     'inlinejs' => array(
         'public/js/inline.js'
+    ),
+    'addons' => array(
+        
+        'jQueryUI' => array(
+            'js' => array(
+                'public/addons/jquery-ui-1.11.4.custom/jquery-ui.min.js'
+            ),
+            'css' => array(
+                'public/addons/jquery-ui-1.11.4.custom/jquery-ui.min.css'
+            )
+        ),
+        
+        'datetimepicker' => array(
+            'js' => array(
+                'public/addons/datetimepicker-master/jquery.datetimepicker.js'
+            ),
+            'css' => array(
+                'public/addons/datetimepicker-master/jquery.datetimepicker.css'
+            )
+        ),
+        
+        'ckeditor' => array(
+            'css' => array(),
+            'js'  => array(
+                'public/addons/ckeditor/ckeditor.js'
+             )
+        ),
+        
+        'jQuery-tagEditor-master' => array(
+            'css' => array(
+                'public/addons/jQuery-tagEditor-master/jquery.tag-editor.css'
+            ),
+            'js' => array(
+                 'public/addons/jQuery-tagEditor-master/jquery.tag-editor.js',
+                 'public/addons/jQuery-tagEditor-master/jquery.caret.js'
+            )
+        )
     )
 );

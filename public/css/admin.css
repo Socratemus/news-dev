@@ -6,7 +6,9 @@ body{
     color: #333333;
     background: #262626;
 }
-
+h1,h2,h3,h4,h5,h6{
+    font-family : Roboto, sans-serif;
+}
 .header{
     padding : 15px 0px;
     color : #f3f3f3;
@@ -103,4 +105,60 @@ main{
 .main-wrapper{
     background : white;
     min-height : 200px;
+}
+
+.widget-header{
+    position : relative;
+    background-color: #e8e8e8;
+    background-image: -webkit-gradient(linear, left top, left bottom, from(#fcfcfc), to(#e8e8e8));
+    background-image: -webkit-linear-gradient(top, #fcfcfc, #e8e8e8);
+    background-image: -moz-linear-gradient(top, #fcfcfc, #e8e8e8);
+    background-image: -ms-linear-gradient(top, #fcfcfc, #e8e8e8);
+    background-image: -o-linear-gradient(top, #fcfcfc, #e8e8e8);
+    background-image: linear-gradient(top, #fcfcfc, #e8e8e8);
+    -webkit-border-radius: 2px 2px 0 0;
+    -moz-border-radius: 2px 2px 0 0;
+    border-radius: 2px 2px 0 0;
+    border-bottom: 1px solid #cfcfcf;
+    height: 42px;
+    padding: 0 15px;
+    line-height: 42px;
+}
+
+.widget-header .tools{
+    position: absolute;
+    right: 20px;
+    top: 0;
+    font-size: 22px;
+}
+
+.widget-title{
+    font-size : 22px;
+    padding-top : 3px;
+}
+
+.widget{
+    background: #fafafa;
+    border: 1px solid #cfcfcf;
+    clear: both;
+    margin-top : 20px;
+    margin-bottom: 30px;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+}
+
+.widget-body{
+    padding-left : 20px; padding-right : 20px;
+    padding-top : 10px; padding-bottom : 10px;
+}
+
+.articol-cover-wp {
+    padding-top : 15px;  
+    padding-left: 45px !important;
+    padding-right: 45px !important;
+}
+
+.articol-cover-wp img{
+    width : 100%;
 }

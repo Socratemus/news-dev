@@ -18,12 +18,18 @@ class Landing extends CI_Controller {
 	public function article(){
 		try
 		{
-			echo $this->uri->segment(2); //article slug
-			echo 'pagina articolului';	
+			$this->load->model('Article_model' ,'articleModel');
+			$article = $this->articleModel->getById(2);
+			//var_dump($article);
+			$this->layout->render(array('article' =>$article));
 		}
 		catch(\Exception $e)
 		{
-			//Render error page.
+			$this->error($e);
+			// $this->layout->setLayout('error/index');
+			// $this->layout->setViewFolder('errors');
+			// $this->layout->setView('404');
+			// $this->layout->render(array('message' => $e->getMessage()));
 		}
 		
 	}
@@ -58,14 +64,18 @@ class Landing extends CI_Controller {
 		}
 		catch(\Exception $e)
 		{
-			//Render error page.
-			//echo 'the page is broken';
-			$this->layout->setLayout('error/index');
-			$this->layout->setViewFolder('errors');
-			$this->layout->setView('404');
-			$this->layout->render(array('message' => $e->getMessage()));
+			$this->error($e);
 		}
 		
+	}
+	
+	/**************************************************************************/
+	
+	private function error($Error){
+		// $this->layout->setLayout('error/index');
+		$this->layout->setViewFolder('errors');
+		$this->layout->setView('404');
+		$this->layout->render(array('message' => $Error->getMessage()));
 	}
     
 }

@@ -165,7 +165,7 @@
         <?php for($i = 0 ; $i < 5 ; $i++) :?>
         <article class="hz">
             
-            <div class="col-xs-5">
+            <div class=" cv col-xs-5">
                 <img src="http://demo.wpzoom.com/compass/files/2015/02/Claire-Hadden-270x200.jpg" alt="article title" /> 
             </div>
             <div class="col-xs-7">

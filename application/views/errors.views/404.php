@@ -1,54 +1,24 @@
-<style type="text/css">
+<div class="col-md-6 extended">
+	
+	<h2 class="title" style="font-size : 26px;"><span>Eroare 404</span></h2>
+	<h3>Nimic nu a fost gasit.</h3>
+	<br /><br />
+	<p>It seems we can’t find what you’re looking for. Perhaps searching can help.</p>
+	
+	<pre><?php var_dump($message);?></pre>
+	
+	<form class="mb30" action="" method="GET">
+		<div class="row mt10">
+			<div class="col-xs-3">
+				<input type="text" placeholder="Cauta stire" name="q" class="form-control" />	
+			</div>
+		</div>
+		<div class="row mt15">
+			<div class="col-xs-3">
+				<input type="button" value="Cauta" name="q" class="btn btn-primary" />	
+			</div>
+		</div>
+	</form>
 
-::selection { background-color: #E13300; color: white; }
-::-moz-selection { background-color: #E13300; color: white; }
-
-body {
-	background-color: #fff;
-	margin: 40px;
-	font: 13px/20px normal Helvetica, Arial, sans-serif;
-	color: #4F5155;
-}
-
-a {
-	color: #003399;
-	background-color: transparent;
-	font-weight: normal;
-}
-
-h1 {
-	color: #444;
-	background-color: transparent;
-	border-bottom: 1px solid #D0D0D0;
-	font-size: 19px;
-	font-weight: normal;
-	margin: 0 0 14px 0;
-	padding: 14px 15px 10px 15px;
-}
-
-code {
-	font-family: Consolas, Monaco, Courier New, Courier, monospace;
-	font-size: 12px;
-	background-color: #f9f9f9;
-	border: 1px solid #D0D0D0;
-	color: #002166;
-	display: block;
-	margin: 14px 0 14px 0;
-	padding: 12px 10px 12px 10px;
-}
-
-#container {
-	margin: 10px;
-	border: 1px solid #D0D0D0;
-	box-shadow: 0 0 8px #D0D0D0;
-}
-
-p {
-	margin: 12px 15px 12px 15px;
-}
-</style>
-
-<div id="container">
-		<h1><?php echo 'Aceasta pagina nu exista.'; ?></h1>
-	    <p>	<?php echo $message; ?></p>
+	
 </div>

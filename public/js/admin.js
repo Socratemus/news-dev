@@ -1,1 +1,12 @@
-var admin = {};
+var admin = {
+    
+	article : {
+		
+		
+		initialize : function(){
+			
+		}
+	}
+  
+    
+};

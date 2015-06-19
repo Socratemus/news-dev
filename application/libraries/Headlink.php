@@ -37,6 +37,19 @@ class Headlink
          return $this;
     }
     
+    public function addAddons($Addons){
+        foreach($Addons as $add){
+            if(!isset($this->obj->config->config['addons'][$add])){
+                throw new \Exception($add . ' addon was not found.');
+            } else {
+                $addonFiles = $this->obj->config->config['addons'][$add]['css'];
+                foreach($addonFiles as $js){
+                    $this->appendStyleSheet($js);    
+                }
+            }
+        }
+    }
+    
     public function __toString(){
         $cssLinks = '';
         foreach($this->_prepend as $css) {

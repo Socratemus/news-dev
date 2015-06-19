@@ -8,7 +8,10 @@ use Doctrine\Common\ClassLoader,
 class Doctrine {
 
   public $em = null;
-
+  
+  /**
+   * Enabled doctrine connection with database/
+   */
   public function __construct()
   {
     // load database configuration from CodeIgniter
@@ -58,6 +61,9 @@ class Doctrine {
     $this->em = EntityManager::create($connectionOptions, $config);
   }
   
+  /**
+   * Generates database.
+   */
   public function generateDatabase(){
       $em = $this->em;
 	    $tool = new \Doctrine\ORM\Tools\SchemaTool($em);
@@ -66,7 +72,9 @@ class Doctrine {
           $em->getClassMetadata("Entity:User"),  
           $em->getClassMetadata("Entity:Story"),
           $em->getClassMetadata("Entity:Category"),
-          $em->getClassMetadata("Entity:Comment")
+          $em->getClassMetadata("Entity:Comment"),
+          $em->getClassMetadata("Entity:Image"),
+          $em->getClassMetadata("Entity:Tag")
       );
       $tool->updateSchema($classes);
       exit("done");
