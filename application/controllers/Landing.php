@@ -4,11 +4,29 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Landing extends CI_Controller {
     
+    public function __construct(){
+    	parent::__construct();
+    	//loading slider model
+    	$this->load->model('Slider_model' , 'sliderModel');
+    }
+    
 	public function index()
 	{
+		try 
+		{
+			$this->load->model('Category_model' , 'categoryModel' );
+			
+			//$menuCats = $this->categoryModel->getPrimaryMenuCategories();
 		
-		
-		$this->layout->render();
+			$addons = array('carouFredSel');
+			$this->headscript->addAddons($addons);
+			$this->layout->render(array());	
+		}
+		catch(\Exception $e)
+		{
+			$this->error($e);
+		}
+			
 	}   
 	
 	
@@ -19,17 +37,27 @@ class Landing extends CI_Controller {
 		try
 		{
 			$this->load->model('Article_model' ,'articleModel');
-			$article = $this->articleModel->getById(2);
+			$this->load->model('Category_model' , 'categoryModel' );
+			$menupr = $this->categoryModel->getPrimaryMenuCategories();
+			$menusc = $this->categoryModel->getSecondaryMenuCategories();
+			
+			$fpt  = $this->categoryModel->getFpt();
+			$fpb = $this->categoryModel->getFpb();
+			
+			$article = $this->articleModel->getById(4);
 			//var_dump($article);
-			$this->layout->render(array('article' =>$article));
+			$this->layout->render(array(
+				'article' =>$article ,
+				'menupr' => $menuCats,
+				'menusc' => $menuCats,
+				'fpt' => $fpt , 
+				'fpb' => $fpb
+				)
+			);
 		}
 		catch(\Exception $e)
 		{
 			$this->error($e);
-			// $this->layout->setLayout('error/index');
-			// $this->layout->setViewFolder('errors');
-			// $this->layout->setView('404');
-			// $this->layout->render(array('message' => $e->getMessage()));
 		}
 		
 	}

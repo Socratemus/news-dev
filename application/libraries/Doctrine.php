@@ -74,7 +74,9 @@ class Doctrine {
           $em->getClassMetadata("Entity:Category"),
           $em->getClassMetadata("Entity:Comment"),
           $em->getClassMetadata("Entity:Image"),
-          $em->getClassMetadata("Entity:Tag")
+          $em->getClassMetadata("Entity:Tag"),
+          $em->getClassMetadata("Entity:Page"),
+          $em->getClassMetadata("Entity:Slide")
       );
       $tool->updateSchema($classes);
       exit("done");

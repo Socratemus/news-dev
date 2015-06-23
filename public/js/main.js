@@ -15,8 +15,25 @@ var app = {
         });
     },
     
+    carouFredSel : function(){
+        $('#Crs').carouFredSel({
+            circular: true,
+            responsive : true,
+            items                : 3,
+            direction            : "left",
+            scroll : {
+                items            : 1,
+                easing            : "elastic",
+                duration        : 1000,
+                pauseOnHover    : true
+            }
+        });
+        
+    },
+    
     initialize : function(){
         this.marquee();  
+        this.carouFredSel();
     }
 };
 

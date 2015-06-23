@@ -27,9 +27,14 @@ class Category extends AbstractEntity {
     protected $Slug;
     
     /**
-     * @Column(type="boolean" , options={"comment":"Site Menu"}) @var string 
+     * @Column(type="boolean" , options={"comment":"Site primary Menu"}) @var string 
      */
-    protected $Menu;
+    protected $PrMenu;
+    
+    /**
+     * @Column(type="boolean" , options={"comment":"Site secondary"}) @var string 
+     */
+    protected $ScMenu;
     
     /**
      * @Column(type="boolean" , options={"comment":"Front page top"}) @var string 
@@ -68,8 +73,9 @@ class Category extends AbstractEntity {
         
         $this->Fpb = 0;
         $this->Fpt = 0;
-        $this->Menu = 0;
-        $this->Status = 91;
+        $this->PrMenu = 0;
+        $this->ScMenu = 0;
+        $this->Status = 99;
     }
     
     public function getCategoryId(){
@@ -84,8 +90,12 @@ class Category extends AbstractEntity {
         return $this->Slug;
     }
     
-    public function getMenu(){
-        return $this->Menu;
+    public function getPrMenu(){
+        return $this->PrMenu;
+    }
+    
+    public function getScMenu(){
+        return $this->ScMenu;
     }
     
     public function getFpt(){
@@ -124,8 +134,12 @@ class Category extends AbstractEntity {
         $this->Slug = $Slug;
     }
     
-    public function setMenu($Menu){
-        $this->Menu = $Menu;
+    public function setPrMenu($Menu){
+        $this->PrMenu = $Menu;
+    }
+    
+    public function setScMenu($Menu){
+        $this->ScMenu = $Menu;
     }
     
     public function setFpt($Fpt){
@@ -151,6 +165,5 @@ class Category extends AbstractEntity {
     public function setStories($Stories){
         $this->Stories = $Stories;
     }
-    
     
 }

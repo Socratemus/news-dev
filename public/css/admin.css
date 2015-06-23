@@ -8,6 +8,7 @@ body{
 }
 h1,h2,h3,h4,h5,h6{
     font-family : Roboto, sans-serif;
+    color : white;
 }
 .header{
     padding : 15px 0px;
@@ -35,7 +36,7 @@ h1,h2,h3,h4,h5,h6{
     float : left;
 }
 
-.admin-nav li{
+.admin-nav > li{
     float : left;
     background-color: #e4e4e4;
     background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#f2f2f2), color-stop(85%, #ebebeb), to(#cccccc));
@@ -51,26 +52,26 @@ h1,h2,h3,h4,h5,h6{
     border-radius: 3px 3px 0 0;
 }
 
-.admin-nav li.active {
+.admin-nav > li.active {
   background: #2d85be;
 }
 
-.admin-nav li:hover{
+.admin-nav > li:hover{
     background: #2d85be;
 }
 
-.admin-nav li:hover a{
+.admin-nav > li:hover a{
     color : white;
 }
 
-.admin-nav li.active a{ 
+.admin-nav > li.active a{ 
     color : white;
 }
-.admin-nav li.active a i{
+.admin-nav > li.active a i{
     color : white;
 }
 
-.admin-nav li a{
+.admin-nav > li a{
     text-align : center; display: block;
     padding: 15px 4px;
     font-size: 11px;
@@ -82,7 +83,7 @@ h1,h2,h3,h4,h5,h6{
 
 }
 
-.admin-nav li a > i{
+.admin-nav > li a > i{
     color: #4d4d4d;
     text-align: center;
     display: block;
@@ -90,6 +91,22 @@ h1,h2,h3,h4,h5,h6{
     font-size: 16px;
 }
 
+.admin-nav .dropdown .dropdown-menu{
+    margin : 0;
+    border-radius : 0;
+    padding : 0;
+    background-color: rgb(45, 133, 190);
+    border-top: 0;
+    margin-top : -1px;
+}
+
+.admin-nav .dropdown li a {
+    color : #f3f3f3;
+}
+
+.admin-nav .dropdown li a:hover{
+      background-color: rgb(0, 95, 157);
+}
 
 .footer{
     padding-top : 10px; padding-bottom :10px;
@@ -137,6 +154,12 @@ main{
     padding-top : 3px;
 }
 
+.widget-title h2{
+    margin-top : 0;
+    margin-bottom : 0;
+    color : black;
+}
+
 .widget{
     background: #fafafa;
     border: 1px solid #cfcfcf;
@@ -151,6 +174,8 @@ main{
 .widget-body{
     padding-left : 20px; padding-right : 20px;
     padding-top : 10px; padding-bottom : 10px;
+    border: 1px solid rgb(240, 240, 240);
+  border-top: 0;
 }
 
 .articol-cover-wp {
@@ -161,4 +186,8 @@ main{
 
 .articol-cover-wp img{
     width : 100%;
+}
+
+.img100{
+    width : 60%;
 }

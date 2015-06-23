@@ -15,8 +15,11 @@
 </style>
 
 <form method="POST" action="" enctype="multipart/form-data" class="widget">
+    <?php if($article->getStoryId() == null) :?>
+    <strong>Acest articol nu mai exista.</strong>
+    <?php else :?>
     <input type="hidden" name="StoryId" value="<?php echo $article->getStoryId(); ?>">
-    <pre><?php echo validation_errors(); ?></pre>
+    <!--<pre><?php echo validation_errors(); ?></pre>-->
     <div class="widget-header">
         <div class="widget-title">
          <h2>Editeaza articol - <?php echo $article->getTitle();?></h2>
@@ -64,7 +67,7 @@
                     ?>
                     <select class="form-control" name="CategoryId">
                         <option>Selecteaza categoria</option>
-                        <?php foreach( $categories as $category) : ?>
+                        <?php foreach( $categories as $category) :  ?>
                         <option <?php echo $category->getCategoryId() == $categoryId  ? 'selected' : ''; ?> value="<?php echo $category->getCategoryId();?>"> <?php echo $category->getTitle();?></option>
                         <?php endforeach;?>
                     </select>
@@ -86,6 +89,14 @@
                     <label>Taguri</label>
                 
                      <input type="text" id="demo2" />
+                </div>
+            </div>
+            
+            <div class="row mt15">
+                <div class="col-xs-6">
+                    <label>Activ</label> <br/>
+                    <?php $statusValue = set_value('Status');?>
+                    <input type="checkbox" name="Status" <?php echo $statusValue || $article->getStatus() == 1 ? 'checked' : '' ?> value='1' id="" />
                 </div>
             </div>
             
@@ -139,7 +150,7 @@
         </div>
         
     </div>
-    
+    <?php endif;?>
 </form>
 
 <script type="text/javascript">

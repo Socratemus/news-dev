@@ -31,23 +31,29 @@
         
         <div class="row mt15">
             
-            <div class="col-xs-3">
+            <div class="col-xs-2">
                 <label>In meniul principal</label> <br />
                 
-                <input type='checkbox' class="" <?php echo set_value('Menu') ? 'checked' : ''; ?> name='Menu' value="1" placeholder="Titlul articolului">
+                <input type='checkbox' class="" <?php echo set_value('PrMenu') ? 'checked' : ''; ?> name='PrMenu' value="1" placeholder="Titlul articolului">
             </div>
             
-            <div class="col-xs-3">
+            <div class="col-xs-2">
+                <label>In meniul secundar</label> <br />
+                
+                <input type='checkbox' class="" <?php echo set_value('ScMenu') ? 'checked' : ''; ?> name='ScMenu' value="1" placeholder="Titlul articolului">
+            </div>
+            
+            <div class="col-xs-2">
                 <label>Front page Top</label> <br />
                 <input type='checkbox' class="" <?php echo set_value('Fpt') ? 'checked' : ''; ?> name='Fpt' value="1" placeholder="Titlul articolului">
             </div>
             
-            <div class="col-xs-3">
+            <div class="col-xs-2">
                 <label>Front page Bottom</label> <br />
                 <input type='checkbox' class="" <?php echo set_value('Fpb') ? 'checked' : ''; ?> name='Fpb' value="1" placeholder="Titlul articolului">
             </div>
             
-            <div class="col-xs-3">
+            <div class="col-xs-2">
                 <label>Activ</label> <br />
                 <input type='checkbox' class="" <?php echo set_value('Status') ? 'checked' : ''; ?> value="1" name='Status' placeholder="Titlul articolului">
             </div>

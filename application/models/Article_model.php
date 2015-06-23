@@ -1,5 +1,7 @@
 <?php
 
+use Doctrine\ORM\Tools\Pagination\Paginator;
+
 class Article_model extends CI_Model {
     
     /**
@@ -11,9 +13,27 @@ class Article_model extends CI_Model {
         parent::__construct();
     }
     
+    public function getAll($offset = 0, $limit = 10){
+        
+        $em = $this->doctrine->em;
+        $qb = $em->createQueryBuilder();
+
+        $qb->select('u')
+            ->from('Entity:Story', 'u')
+            ->setMaxResults($limit)
+            ->setFirstResult($offset);
+
+        $query = $qb->getQuery();
+
+        $paginator = new Paginator( $query );
+       
+        return $paginator;
+        
+    }
+    
     public function getById($id){
         //echo $id;
-        $article = $this->doctrine->em->getRepository('Entity:Story')->findBy(array('StoryId' => $id , 'Status' => 1));
+        $article = $this->doctrine->em->getRepository('Entity:Story')->findBy(array('StoryId' => $id ));
         if(isset($article[0])){
             return $article[0];
         } else {
@@ -68,6 +88,12 @@ class Article_model extends CI_Model {
         if(isset($Data['PubDate'])){
             $Article->setPubDate( new \DateTime($Data['PubDate']));    
         }
+        
+        if(!isset($Data['Status'])){
+            $Article->setStatus(99);
+        }
+        
+        //var_dump($Article);exit();
         
         $this->doctrine->em->persist($Article);
         $this->doctrine->em->flush();

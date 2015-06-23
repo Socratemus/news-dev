@@ -52,7 +52,7 @@ class Story extends AbstractEntity {
     protected $Updated;
     
     /**
-     * @Column(type="boolean") @var string 
+     * @Column(type="integer") @var string 
      */
     protected $Status;
     

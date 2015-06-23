@@ -58,6 +58,11 @@ $config = array(
                  'public/addons/jQuery-tagEditor-master/jquery.tag-editor.js',
                  'public/addons/jQuery-tagEditor-master/jquery.caret.js'
             )
-        )
+        ),
+        'carouFredSel'  => array(
+            'js' => array(
+                 'public/addons/carouFredSel/jquery.carouFredSel-6.2.1.js'
+            )
+        ),
     )
 );

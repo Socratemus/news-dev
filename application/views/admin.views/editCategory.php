@@ -35,28 +35,33 @@
         
         <div class="row mt15">
             
-            <div class="col-xs-3">
+            <div class="col-xs-2">
                 <label>In meniul principal</label> <br />
-                <?php $menuValue = set_value('Menu');?>
-                <input type='checkbox' class="" <?php echo $menuValue || $category->getMenu() ? 'checked' : ''; ?> name='Menu' value="1" placeholder="Titlul articolului">
+                <?php $menuValue = set_value('PrMenu');?>
+                <input type='checkbox' class="" <?php echo $menuValue || $category->getPrMenu() ? 'checked' : ''; ?> name='PrMenu' value="1" placeholder="">
+            </div>
+            <div class="col-xs-2">
+                <label>In meniul secundar</label> <br />
+                <?php $menuValue = set_value('ScMenu');?>
+                <input type='checkbox' class="" <?php echo $menuValue || $category->getScMenu() ? 'checked' : ''; ?> name='ScMenu' value="1" placeholder="">
             </div>
             
-            <div class="col-xs-3">
+            <div class="col-xs-2">
                 <label>Front page Top</label> <br />
                 <?php $fptValue = set_value('Fpt');?>
-                <input type='checkbox' class="" <?php echo $fptValue || $category->getFpt() ? 'checked' : ''; ?> name='Fpt' value="1" placeholder="Titlul articolului">
+                <input type='checkbox' class="" <?php echo $fptValue || $category->getFpt() ? 'checked' : ''; ?> name='Fpt' value="1" placeholder="">
             </div>
             
-            <div class="col-xs-3">
+            <div class="col-xs-2">
                 <label>Front page Bottom</label> <br />
                 <?php $fpbValue = set_value('Fpb');?>
-                <input type='checkbox' class="" <?php echo $fpbValue || $category->getFpb() ? 'checked' : ''; ?> name='Fpb' value="1" placeholder="Titlul articolului">
+                <input type='checkbox' class="" <?php echo $fpbValue || $category->getFpb() ? 'checked' : ''; ?> name='Fpb' value="1" placeholder="">
             </div>
             
-            <div class="col-xs-3">
+            <div class="col-xs-2">
                 <label>Activ</label> <br />
                 <?php $statusValue = set_value('Status');?>
-                <input type='checkbox' class="" <?php echo $statusValue || $category->getStatus() ?  'checked' : ''; ?> value="1" name='Status' placeholder="Titlul articolului">
+                <input type='checkbox' class="" <?php echo $statusValue || $category->getStatus() ?  'checked' : ''; ?> value="1" name='Status' placeholder="">
             </div>
             
         </div>

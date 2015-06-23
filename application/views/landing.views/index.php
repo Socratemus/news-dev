@@ -1,8 +1,32 @@
-<div class="row news-section">
+<?php $slides =  $this->sliderModel->getAllActive(); ?>
+
+
+<div class="col-md-12 extended mb25">
+    <div class="crs" id="Crs">
+        
+        <?php foreach($slides as $slide) :?>
+        <div class="">
+            <img src="<?php echo $slide->getImage()->getMedium()?>" alt="" />
+        </div>
+        <div class="">
+            <img src="<?php echo $slide->getImage()->getMedium()?>" alt="" />
+        </div>
+        
+        <?php endforeach;?>
+        
+    </div>    
+</div>
+
+
+
+<div class="col-md-12 news-section">
+    
+    <?php $fptc = $this->categoryModel->getFpt();?>
+    <?php foreach($fptc as $fptct) :?>
     <div class="col-md-4">
         <h3 class="main-section-title uppercase title">
             <span>
-                <a href="">Tehnology</a>
+                <a href=""><?php echo $fptct->getTitle();?></a>
             </span>    
         </h3>
         
@@ -50,8 +74,9 @@
         </ul>
         
     </div>
+    <?php endforeach;?>
     
-    <div class="col-md-4">
+    <div class="col-md-4 hide">
         <h3 class="main-section-title uppercase title">
             <span>
                 <a href="">Cars</a>
@@ -103,7 +128,7 @@
         
     </div>
     
-    <div class="col-md-4">
+    <div class="col-md-4 hide">
         <h3 class="main-section-title uppercase title">
             <span>
                 <a href="">Travel</a>
@@ -156,7 +181,7 @@
     </div>
 </div>
 
-<div class="row main-bottom">
+<div class="col-md-12 main-bottom">
     
     <div class="col-md-8">
         <h3 class="title">
@@ -263,7 +288,7 @@
         
 </div>
 
-<div class="row news-section">
+<div class="col-md-12 news-section">
     <div class="col-md-3">
         <h3 class="main-section-title uppercase title">
             <span>
@@ -472,3 +497,11 @@
         
     </div>
 </div>
+
+<div class="clearfix"></div>
+
+<script type="text/javascript">
+    $().ready(function(){
+        
+    });
+</script>

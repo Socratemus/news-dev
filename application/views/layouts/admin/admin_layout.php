@@ -31,31 +31,60 @@
                     </li>
                     
                     <li> 
-                        <a href="">
-                            <i class="fa fa-laptop"></i> 
-                            Cms
-                        </a>
+                        <div class="dropdown">
+                          <a class="dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                            <i class="fa fa-pencil-square-o"></i> 
+                            CMS System
+                            <span class="caret"></span>
+                          </a>
+                          <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                            <li><a href="<?php echo site_url('/admin/cms')?>">Listare pagini statice</a></li>
+                            <li><a href="<?php echo site_url('/admin/newCmsPage')?>">Adauga pagina noua</a></li>
+                          </ul>
+                        </div>
                     </li>
                     
                     <li> 
-                        <a href="">
+                        <div class="dropdown">
+                          <a class="dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
                             <i class="fa fa-laptop"></i> 
                             Categories
-                        </a>
+                            <span class="caret"></span>
+                          </a>
+                          <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                            <li><a href="<?php echo site_url('/admin/categories')?>">Listare categorii</a></li>
+                            <li><a href="<?php echo site_url('/admin/newCategory')?>">Adauga o categorie</a></li>
+                          </ul>
+                        </div>
+
                     </li>
                     
                     <li> 
-                        <a href="">
-                            <i class="fa fa-laptop"></i> 
-                            Articles
-                        </a>
+                        <div class="dropdown">
+                          <a class="dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                            <i class="fa fa-newspaper-o"></i> 
+                            Articole
+                            <span class="caret"></span>
+                          </a>
+                          <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                            <li><a href="<?php echo site_url('/admin/articles')?>">Listare articole</a></li>
+                            <li><a href="<?php echo site_url('/admin/newArticle')?>">Adauga un articol</a></li>
+                          </ul>
+                        </div>
                     </li>
                     
                     <li> 
-                        <a href="">
+                        <div class="dropdown">
+                          <a class="dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
                             <i class="fa fa-gear"></i> 
                             Setari
-                        </a>
+                            <span class="caret"></span>
+                          </a>
+                          <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                            <li><a href="<?php echo site_url('/admin/seo')?>">SEO</a></li>
+                            <li><a href="<?php echo site_url('/admin/slider')?>">Slider</a></li>
+                          </ul>
+                        </div>
                     </li>
                     
                 </ul>

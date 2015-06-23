@@ -2,15 +2,34 @@
 
 class Category_model extends CI_Model {
     
- 
-    
     public function __construct()
     {
         parent::__construct();
     }
     
     public function getAll(){
-        $cats = $this->doctrine->em->getRepository('Entity:Category')->findBy(array('Status' => 1));
+        //$cats = $this->doctrine->em->getRepository('Entity:Category')->findBy(array('Status' => 1));
+        $cats = $this->doctrine->em->getRepository('Entity:Category')->findAll();
+        return $cats;
+    }
+    
+    public function getPrimaryMenuCategories(){
+        $cats = $this->doctrine->em->getRepository('Entity:Category')->findBy(array('Status' => 1 , 'PrMenu' => 1));
+        return $cats;
+    }
+    
+    public function getSecondaryMenuCategories(){
+        $cats = $this->doctrine->em->getRepository('Entity:Category')->findBy(array('Status' => 1 , 'ScMenu' => 1));
+        return $cats;
+    }
+    
+    public function getFpt(){
+        $cats = $this->doctrine->em->getRepository('Entity:Category')->findBy(array('Status' => 1 , 'Fpt' => 1));
+        return $cats;
+    }
+    
+    public function getFpb(){
+        $cats = $this->doctrine->em->getRepository('Entity:Category')->findBy(array('Status' => 1 , 'Fpb' => 1));
         return $cats;
     }
     

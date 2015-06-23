@@ -34,7 +34,6 @@ class User_model extends CI_Model {
         $this->session->set_userdata('identity', $identity->getUserId());
     }
     
-    
     public function fetchByUsername($Username){
        
        $repo = $this->doctrine->em->getRepository('Entity:User');
@@ -58,7 +57,7 @@ class User_model extends CI_Model {
 
     }
     
-    public function addUser($Input){
+    public function add($Input){
         
         $user = new models\Entities\User();
         
@@ -74,6 +73,8 @@ class User_model extends CI_Model {
         $this->doctrine->em->persist($user);
         
         $this->doctrine->em->flush();
+        
+        return $user;
         
     }
     
