@@ -60,10 +60,16 @@ class Category extends \models\Entities\Category implements \Doctrine\ORM\Proxy\
         return parent::getSlug();
     }
 
-    public function getMenu()
+    public function getPrMenu()
     {
         $this->__load();
-        return parent::getMenu();
+        return parent::getPrMenu();
+    }
+
+    public function getScMenu()
+    {
+        $this->__load();
+        return parent::getScMenu();
     }
 
     public function getFpt()
@@ -120,10 +126,16 @@ class Category extends \models\Entities\Category implements \Doctrine\ORM\Proxy\
         return parent::setSlug($Slug);
     }
 
-    public function setMenu($Menu)
+    public function setPrMenu($Menu)
     {
         $this->__load();
-        return parent::setMenu($Menu);
+        return parent::setPrMenu($Menu);
+    }
+
+    public function setScMenu($Menu)
+    {
+        $this->__load();
+        return parent::setScMenu($Menu);
     }
 
     public function setFpt($Fpt)
@@ -165,7 +177,7 @@ class Category extends \models\Entities\Category implements \Doctrine\ORM\Proxy\
 
     public function __sleep()
     {
-        return array('__isInitialized__', 'CategoryId', 'Title', 'Slug', 'Menu', 'Fpt', 'Fpb', 'Created', 'Updated', 'Status', 'Stories');
+        return array('__isInitialized__', 'CategoryId', 'Title', 'Slug', 'PrMenu', 'ScMenu', 'Fpt', 'Fpb', 'Created', 'Updated', 'Status', 'Stories');
     }
 
     public function __clone()

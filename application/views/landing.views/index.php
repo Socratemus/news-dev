@@ -1,15 +1,19 @@
 <?php $slides =  $this->sliderModel->getAllActive(); ?>
 
 
-<div class="col-md-12 extended mb25">
+<div class="col-md-12 extended mb25" style="margin-top : 3px">
     <div class="crs" id="Crs">
         
         <?php foreach($slides as $slide) :?>
         <div class="">
             <img src="<?php echo $slide->getImage()->getMedium()?>" alt="" />
+            <h4 class="ml15"><?php echo $slide->getTitle();?></h4>
+            <!--<p class="ml15"><?php echo $slide->getContent();?></p>-->
         </div>
         <div class="">
             <img src="<?php echo $slide->getImage()->getMedium()?>" alt="" />
+            <h4 class="ml15"><?php echo $slide->getTitle();?></h4>
+            <!--<p class="ml15"><?php echo $slide->getContent();?></p>-->
         </div>
         
         <?php endforeach;?>
@@ -32,153 +36,60 @@
         
         <br />
         
+        <?php $first = $fptct->getStories()->first();?>
+        <?php if($first) : ?>
         <article class="mn">
             
             <div class="cv-hld">
-                <a href="">
-                    <img src="http://demo.wpzoom.com/compass/files/2015/02/100708_Pudong_Hero_PR-640x400.jpeg" alt="article title"/>     
+                <a href="<?php echo site_url('/a/' . $first->getSlug());?>">
+                    <img src="<?php echo $first->getCover()->getMedium();?>" alt="article title"/>     
                 </a>
             </div>
             
             <h3 class="article-title">
-                <a href="">Take a sneak peak inside Apple’s gorgeous new Chongqing Store</a>
+                <a href=""><?php echo $first->getTitle();?></a>
             </h3>
             
             <div class="meta-data">
-                <span class="pub-date">February 16, 2015 </span>
-                <span class="comm-no"><a href="">0 comments</a></span>
+                <?php $pubDate = $first->getPubDate()->format('d') . ' ' . Utils::getMonth($first->getPubDate()->format('m')) . ', ' .$first->getPubDate()->format('Y');  ?>
+                <span class="pub-date"><?php echo $pubDate;?> </span>
+                <span class="comm-no"><a href="">0 comentarii</a></span>
             </div>
             
             <div class="desc">
-                <p>This is some dummy copy. You’re not really supposed to read this dummy copy, it is just a place holder for people who need some type to visualize what the actual copy might look like if it were real content. If you want to read, I might suggest a good […]</p>
+                <p><?php echo $first->getShortDescription();?></p>
             </div>
             
         </article>
+        <?php endif;?>
+        
+        <?php
+            $featured = array();
+            $ftcnt = 3;
+            while($ftcnt > 0 ){
+                if($tmp = $fptct->getStories()->next()){
+                    $featured[] = $tmp;
+                }
+                unset($tmp);
+                $ftcnt--;
+            }
+        ?>
+        
         
         <ul class="featured">
+            
+            <?php foreach($featured as $article) :?>
             <li>
-    			<h4 class="article-title"><a href="http://demo.wpzoom.com/compass/2015/02/16/apple-reports-record-earnings-and-ipad-sales/" title="Apple Reports Record Earnings and iPad Sales">Apple Reports Record Earnings and iPad Sales</a></h4>
+    			<h4 class="article-title"><a href="<?php echo site_url('/a/' . $article->getSlug()); ?>" title=""><?php echo $article->getTitle();?></a></h4>
     			<div class="clear"></div>
     		</li>
-    		
-    		<li>
-    			<h4 class="article-title"><a href="http://demo.wpzoom.com/compass/2015/02/16/apple-reports-record-earnings-and-ipad-sales/" title="Apple Reports Record Earnings and iPad Sales">Apple Reports Record Earnings and iPad Sales</a></h4>
-    			<div class="clear"></div>
-    		</li>
-    		
-    		<li>
-    			<h4 class="article-title"><a href="http://demo.wpzoom.com/compass/2015/02/16/apple-reports-record-earnings-and-ipad-sales/" title="Apple Reports Record Earnings and iPad Sales">Apple Reports Record Earnings and iPad Sales</a></h4>
-    			<div class="clear"></div>
-    		</li>
+    		<?php endforeach;?>
     		
         </ul>
         
     </div>
     <?php endforeach;?>
     
-    <div class="col-md-4 hide">
-        <h3 class="main-section-title uppercase title">
-            <span>
-                <a href="">Cars</a>
-            </span>    
-        </h3>
-        
-        <br />
-        
-        <article class="mn">
-            
-            <div class="cv-hld">
-                <a href="">
-                    <img src="http://demo.wpzoom.com/compass/files/2015/02/2015-Porsche-Cayman-GT4-Blue-5-1920x1200-640x400.jpg" alt="article title"/>     
-                </a>
-            </div>
-            
-            <h3 class="article-title">
-                <a href="">Take a sneak peak inside Apple’s gorgeous new Chongqing Store</a>
-            </h3>
-            
-            <div class="meta-data">
-                <span class="pub-date">February 16, 2015 </span>
-                <span class="comm-no"><a href="">0 comments</a></span>
-            </div>
-            
-            <div class="desc">
-                <p>This is some dummy copy. You’re not really supposed to read this dummy copy, it is just a place holder for people who need some type to visualize what the actual copy might look like if it were real content. If you want to read, I might suggest a good […]</p>
-            </div>
-            
-        </article>
-        
-        <ul class="featured">
-            <li>
-    			<h4 class="article-title"><a href="http://demo.wpzoom.com/compass/2015/02/16/apple-reports-record-earnings-and-ipad-sales/" title="Apple Reports Record Earnings and iPad Sales">Apple Reports Record Earnings and iPad Sales</a></h4>
-    			<div class="clear"></div>
-    		</li>
-    		
-    		<li>
-    			<h4 class="article-title"><a href="http://demo.wpzoom.com/compass/2015/02/16/apple-reports-record-earnings-and-ipad-sales/" title="Apple Reports Record Earnings and iPad Sales">Apple Reports Record Earnings and iPad Sales</a></h4>
-    			<div class="clear"></div>
-    		</li>
-    		
-    		<li>
-    			<h4 class="article-title"><a href="http://demo.wpzoom.com/compass/2015/02/16/apple-reports-record-earnings-and-ipad-sales/" title="Apple Reports Record Earnings and iPad Sales">Apple Reports Record Earnings and iPad Sales</a></h4>
-    			<div class="clear"></div>
-    		</li>
-    		
-        </ul>
-        
-    </div>
-    
-    <div class="col-md-4 hide">
-        <h3 class="main-section-title uppercase title">
-            <span>
-                <a href="">Travel</a>
-            </span>    
-        </h3>
-        
-        <br />
-        
-        <article class="mn">
-            
-            <div class="cv-hld">
-                <a href="">
-                    <img src="http://demo.wpzoom.com/compass/files/2011/04/Diablo_Lake_Washington_State-640x400.jpg" alt="article title"/>     
-                </a>
-            </div>
-            
-            <h3 class="article-title">
-                <a href="">Take a sneak peak inside Apple’s gorgeous new Chongqing Store</a>
-            </h3>
-            
-            <div class="meta-data">
-                <span class="pub-date">February 16, 2015 </span>
-                <span class="comm-no"><a href="">0 comments</a></span>
-            </div>
-            
-            <div class="desc">
-                <p>This is some dummy copy. You’re not really supposed to read this dummy copy, it is just a place holder for people who need some type to visualize what the actual copy might look like if it were real content. If you want to read, I might suggest a good […]</p>
-            </div>
-            
-        </article>
-        
-        <ul class="featured">
-            <li>
-    			<h4 class="article-title"><a href="http://demo.wpzoom.com/compass/2015/02/16/apple-reports-record-earnings-and-ipad-sales/" title="Apple Reports Record Earnings and iPad Sales">Apple Reports Record Earnings and iPad Sales</a></h4>
-    			<div class="clear"></div>
-    		</li>
-    		
-    		<li>
-    			<h4 class="article-title"><a href="http://demo.wpzoom.com/compass/2015/02/16/apple-reports-record-earnings-and-ipad-sales/" title="Apple Reports Record Earnings and iPad Sales">Apple Reports Record Earnings and iPad Sales</a></h4>
-    			<div class="clear"></div>
-    		</li>
-    		
-    		<li>
-    			<h4 class="article-title"><a href="http://demo.wpzoom.com/compass/2015/02/16/apple-reports-record-earnings-and-ipad-sales/" title="Apple Reports Record Earnings and iPad Sales">Apple Reports Record Earnings and iPad Sales</a></h4>
-    			<div class="clear"></div>
-    		</li>
-    		
-        </ul>
-        
-    </div>
 </div>
 
 <div class="col-md-12 main-bottom">
@@ -187,34 +98,40 @@
         <h3 class="title">
             <span>Latest News</span>
         </h3>
-        <?php for($i = 0 ; $i < 5 ; $i++) :?>
+        <?php foreach($recents as $article) : ?>
         <article class="hz">
             
             <div class=" cv col-xs-5">
-                <img src="http://demo.wpzoom.com/compass/files/2015/02/Claire-Hadden-270x200.jpg" alt="article title" /> 
+                <img src="<?php echo $article->getCover()->getMedium();?>" alt="<?php echo $article->getTitle();?>" /> 
             </div>
             <div class="col-xs-7">
                 <h3 class="article-title">
-                    <a href="">
-                        This fierce blizzard has made February Boston’s snowiest month ever
+                    <a href="<?php echo site_url('/a/' . $article->getSlug())?>">
+                        <?php echo $article->getTitle();?>
                     </a>
                 </h3>
-                <p class="pub-data">By <a href="" class="author">Cornelius Maximus</a> <span class="pub-date">February 16, 2015 </span> <a href="">0 comments</a></p>
-                <p>This is some dummy copy. You’re not really supposed to read this dummy copy, it is just a place holder for people who need some type to visualize what the actual copy might look like if it were real content. If you want to read, I might suggest a good […]</p>
+                <?php $pubDate = $article->getPubDate()->format('d') . ' ' . Utils::getMonth($article->getPubDate()->format('m')) . ', ' . $article->getPubDate()->format('Y');  ?>
+                <p class="pub-data">By <a href="" class="author">Cornelius Maximus</a> <span class="pub-date"><?php echo $pubDate;?></span> <a href="">0 comments</a></p>
+                <p><?php echo $article->getShortDescription();?></p>
             </div>
             <div class="clearfix"></div>
         </article>
-        <?php endfor; ?>
+        <?php endforeach; ?>
         
         <div class="bs-example" style="text-align : center;">
+            <?php 
+                $currPage = $this->input->get('page');
+                $currPage = $currPage ? $currPage : 1; 
+                $prev = $currPage == 1 ? 1 : $currPage - 1;
+                $next = $currPage == $pages ? $pages : $currPage + 1;
+            ?>
             <ul class="pagination">
-                <li><a href="#">&laquo;</a></li>
-                <li><a href="#">1</a></li>
-                <li><a href="#">2</a></li>
-                <li><a href="#">3</a></li>
-                <li><a href="#">4</a></li>
-                <li><a href="#">5</a></li>
-                <li><a href="#">&raquo;</a></li>
+                <li><a href="<?php echo site_url('?page=' . $prev);?>">&laquo;</a></li>
+                <?php for($i = 1 ; $i<= $pages ; $i++) :?>
+                <li><a href="<?php echo site_url('?page=' . $i);?>"><?php echo $i;?></a></li>
+                <?php endfor;?>
+                
+                <li><a href="<?php echo site_url('?page=' . $next);?>">&raquo;</a></li>
             </ul>
         </div>
     </div>    
@@ -289,213 +206,68 @@
 </div>
 
 <div class="col-md-12 news-section">
-    <div class="col-md-3">
-        <h3 class="main-section-title uppercase title">
-            <span>
-                <a href="">Tehnology</a>
-            </span>    
-        </h3>
-        
-        <br />
-        
-        <article class="mn">
-            
-            <div class="cv-hld">
-                <a href="">
-                    <img src="http://demo.wpzoom.com/compass/files/2015/02/100708_Pudong_Hero_PR-640x400.jpeg" alt="article title"/>     
-                </a>
-            </div>
-            
-            <h3 class="article-title">
-                <a href="">Take a sneak peak inside Apple’s gorgeous new Chongqing Store</a>
-            </h3>
-            
-            <div class="meta-data">
-                <span class="pub-date">February 16, 2015 </span>
-                <span class="comm-no"><a href="">0 comments</a></span>
-            </div>
-            
-            <div class="desc">
-                <p>This is some dummy copy. You’re not really supposed to read this dummy copy, it is just a place holder for people who need some type to visualize what the actual copy might look like if it were real content. If you want to read, I might suggest a good […]</p>
-            </div>
-            
-        </article>
-        
-        <ul class="featured">
-            <li>
-    			<h4 class="article-title"><a href="http://demo.wpzoom.com/compass/2015/02/16/apple-reports-record-earnings-and-ipad-sales/" title="Apple Reports Record Earnings and iPad Sales">Apple Reports Record Earnings and iPad Sales</a></h4>
-    			<div class="clear"></div>
-    		</li>
-    		
-    		<li>
-    			<h4 class="article-title"><a href="http://demo.wpzoom.com/compass/2015/02/16/apple-reports-record-earnings-and-ipad-sales/" title="Apple Reports Record Earnings and iPad Sales">Apple Reports Record Earnings and iPad Sales</a></h4>
-    			<div class="clear"></div>
-    		</li>
-    		
-    		<li>
-    			<h4 class="article-title"><a href="http://demo.wpzoom.com/compass/2015/02/16/apple-reports-record-earnings-and-ipad-sales/" title="Apple Reports Record Earnings and iPad Sales">Apple Reports Record Earnings and iPad Sales</a></h4>
-    			<div class="clear"></div>
-    		</li>
-    		
-        </ul>
-        
-    </div>
     
+    <?php $fpbc = $this->categoryModel->getFpb();?>
+    <?php foreach($fpbc as $fpbct) :?>
     <div class="col-md-3">
         <h3 class="main-section-title uppercase title">
             <span>
-                <a href="">Cars</a>
+                <a href="<?php echo site_url('/c/'.$fpbct->getSlug())?>"><?php echo $fpbct->getTitle();?></a>
             </span>    
         </h3>
         
         <br />
-        
+        <?php $first= $fpbct->getStories()->first();?>
+        <?php if($first) : ?>
         <article class="mn">
             
             <div class="cv-hld">
                 <a href="">
-                    <img src="http://demo.wpzoom.com/compass/files/2015/02/2015-Porsche-Cayman-GT4-Blue-5-1920x1200-640x400.jpg" alt="article title"/>     
+                    <img src="<?php echo $first->getCover()->getMedium();?>" alt="<?php echo $first->getTitle();?>"/>     
                 </a>
             </div>
             
             <h3 class="article-title">
-                <a href="">Take a sneak peak inside Apple’s gorgeous new Chongqing Store</a>
+                <a href="<?php echo site_url('/a/' . $first->getSlug());?>"><?php echo $first->getTitle();?></a>
             </h3>
             
             <div class="meta-data">
-                <span class="pub-date">February 16, 2015 </span>
+                <?php $pubDate = $first->getPubDate()->format('d') . ' ' . Utils::getMonth($first->getPubDate()->format('m')) . ', ' .$first->getPubDate()->format('Y');  ?>
+                <span class="pub-date"><?php echo $pubDate;?> </span>
                 <span class="comm-no"><a href="">0 comments</a></span>
             </div>
             
             <div class="desc">
-                <p>This is some dummy copy. You’re not really supposed to read this dummy copy, it is just a place holder for people who need some type to visualize what the actual copy might look like if it were real content. If you want to read, I might suggest a good […]</p>
+                <p><?php echo $first->getShortDescription();?></p>
             </div>
             
         </article>
+        <?php endif;?>
         
         <ul class="featured">
+            <?php
+                $featured = array();
+                $ftcnt = 3;
+                while($ftcnt > 0 ){
+                    if($tmp = $fpbct->getStories()->next()){
+                        $featured[] = $tmp;
+                    }
+                    unset($tmp);
+                    $ftcnt--;
+                }
+            ?>
+            <?php foreach($featured as $article) : ?>
             <li>
-    			<h4 class="article-title"><a href="http://demo.wpzoom.com/compass/2015/02/16/apple-reports-record-earnings-and-ipad-sales/" title="Apple Reports Record Earnings and iPad Sales">Apple Reports Record Earnings and iPad Sales</a></h4>
+    			<h4 class="article-title"><a href="<?php echo site_url('/a/' . $article->getSlug())?>" title=""><?php echo $article->getTitle()?></a></h4>
     			<div class="clear"></div>
     		</li>
-    		
-    		<li>
-    			<h4 class="article-title"><a href="http://demo.wpzoom.com/compass/2015/02/16/apple-reports-record-earnings-and-ipad-sales/" title="Apple Reports Record Earnings and iPad Sales">Apple Reports Record Earnings and iPad Sales</a></h4>
-    			<div class="clear"></div>
-    		</li>
-    		
-    		<li>
-    			<h4 class="article-title"><a href="http://demo.wpzoom.com/compass/2015/02/16/apple-reports-record-earnings-and-ipad-sales/" title="Apple Reports Record Earnings and iPad Sales">Apple Reports Record Earnings and iPad Sales</a></h4>
-    			<div class="clear"></div>
-    		</li>
-    		
+    		<?php endforeach;?>
+
         </ul>
         
     </div>
-    
-    <div class="col-md-3">
-        <h3 class="main-section-title uppercase title">
-            <span>
-                <a href="">Travel</a>
-            </span>    
-        </h3>
-        
-        <br />
-        
-        <article class="mn">
-            
-            <div class="cv-hld">
-                <a href="">
-                    <img src="http://demo.wpzoom.com/compass/files/2011/04/Diablo_Lake_Washington_State-640x400.jpg" alt="article title"/>     
-                </a>
-            </div>
-            
-            <h3 class="article-title">
-                <a href="">Take a sneak peak inside Apple’s gorgeous new Chongqing Store</a>
-            </h3>
-            
-            <div class="meta-data">
-                <span class="pub-date">February 16, 2015 </span>
-                <span class="comm-no"><a href="">0 comments</a></span>
-            </div>
-            
-            <div class="desc">
-                <p>This is some dummy copy. You’re not really supposed to read this dummy copy, it is just a place holder for people who need some type to visualize what the actual copy might look like if it were real content. If you want to read, I might suggest a good […]</p>
-            </div>
-            
-        </article>
-        
-        <ul class="featured">
-            <li>
-    			<h4 class="article-title"><a href="http://demo.wpzoom.com/compass/2015/02/16/apple-reports-record-earnings-and-ipad-sales/" title="Apple Reports Record Earnings and iPad Sales">Apple Reports Record Earnings and iPad Sales</a></h4>
-    			<div class="clear"></div>
-    		</li>
-    		
-    		<li>
-    			<h4 class="article-title"><a href="http://demo.wpzoom.com/compass/2015/02/16/apple-reports-record-earnings-and-ipad-sales/" title="Apple Reports Record Earnings and iPad Sales">Apple Reports Record Earnings and iPad Sales</a></h4>
-    			<div class="clear"></div>
-    		</li>
-    		
-    		<li>
-    			<h4 class="article-title"><a href="http://demo.wpzoom.com/compass/2015/02/16/apple-reports-record-earnings-and-ipad-sales/" title="Apple Reports Record Earnings and iPad Sales">Apple Reports Record Earnings and iPad Sales</a></h4>
-    			<div class="clear"></div>
-    		</li>
-    		
-        </ul>
-        
-    </div>
-    
-    <div class="col-md-3">
-        <h3 class="main-section-title uppercase title">
-            <span>
-                <a href="">Travel</a>
-            </span>    
-        </h3>
-        
-        <br />
-        
-        <article class="mn">
-            
-            <div class="cv-hld">
-                <a href="">
-                    <img src="http://demo.wpzoom.com/compass/files/2011/04/Diablo_Lake_Washington_State-640x400.jpg" alt="article title"/>     
-                </a>
-            </div>
-            
-            <h3 class="article-title">
-                <a href="">Take a sneak peak inside Apple’s gorgeous new Chongqing Store</a>
-            </h3>
-            
-            <div class="meta-data">
-                <span class="pub-date">February 16, 2015 </span>
-                <span class="comm-no"><a href="">0 comments</a></span>
-            </div>
-            
-            <div class="desc">
-                <p>This is some dummy copy. You’re not really supposed to read this dummy copy, it is just a place holder for people who need some type to visualize what the actual copy might look like if it were real content. If you want to read, I might suggest a good […]</p>
-            </div>
-            
-        </article>
-        
-        <ul class="featured">
-            <li>
-    			<h4 class="article-title"><a href="http://demo.wpzoom.com/compass/2015/02/16/apple-reports-record-earnings-and-ipad-sales/" title="Apple Reports Record Earnings and iPad Sales">Apple Reports Record Earnings and iPad Sales</a></h4>
-    			<div class="clear"></div>
-    		</li>
-    		
-    		<li>
-    			<h4 class="article-title"><a href="http://demo.wpzoom.com/compass/2015/02/16/apple-reports-record-earnings-and-ipad-sales/" title="Apple Reports Record Earnings and iPad Sales">Apple Reports Record Earnings and iPad Sales</a></h4>
-    			<div class="clear"></div>
-    		</li>
-    		
-    		<li>
-    			<h4 class="article-title"><a href="http://demo.wpzoom.com/compass/2015/02/16/apple-reports-record-earnings-and-ipad-sales/" title="Apple Reports Record Earnings and iPad Sales">Apple Reports Record Earnings and iPad Sales</a></h4>
-    			<div class="clear"></div>
-    		</li>
-    		
-        </ul>
-        
-    </div>
+    <?php endforeach;?>
+
 </div>
 
 <div class="clearfix"></div>

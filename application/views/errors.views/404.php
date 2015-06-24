@@ -1,11 +1,11 @@
-<div class="col-md-6 extended">
+<div class="col-md-6 pt15 pb15">
 	
 	<h2 class="title" style="font-size : 26px;"><span>Eroare 404</span></h2>
 	<h3>Nimic nu a fost gasit.</h3>
 	<br /><br />
 	<p>It seems we can’t find what you’re looking for. Perhaps searching can help.</p>
 	
-	<pre><?php var_dump($message);?></pre>
+	<!--<pre><?php var_dump($message);?></pre>-->
 	
 	<form class="mb30" action="" method="GET">
 		<div class="row mt10">
@@ -20,5 +20,6 @@
 		</div>
 	</form>
 
-	
+	<div class="clearfix"></div>
 </div>
+	<div class="clearfix"></div>

@@ -35,7 +35,12 @@ class Story extends AbstractEntity {
      * @Column(type="text") @var string 
      */
     protected $LongDescription;
-
+    
+    /**
+     * @Column(type="integer") @var string 
+     */
+    protected $Hits;
+    
     /**
      * @Column(type="datetime") @var string 
      */
@@ -69,15 +74,25 @@ class Story extends AbstractEntity {
     private $Category;
     
     private $Comments;
+    
+    /**
+     * @ManyToMany(targetEntity="Tag", inversedBy="Stories")
+     * @JoinTable(name="stories_tags",
+     *      joinColumns={@JoinColumn(name="StoryId", referencedColumnName="StoryId")},
+     *      inverseJoinColumns={@JoinColumn(name="TagId", referencedColumnName="TagId" , onDelete="CASCADE")}
+     *      )
+     **/
     private $Tags;
+    
     private $Author;
 
     public function __construct() {
+        $this->Hits = 0;
+        $this->Tags    = new ArrayCollection();
         $this->Created = new \DateTime('now');
         $this->Updated = new \DateTime('now');
         $this->PubDate = new \DateTime('now');
         $this->Status = 1;
-        
     }
 
     /* Setters and getters */
@@ -105,7 +120,11 @@ class Story extends AbstractEntity {
     public function getPubDate() {
         return $this->PubDate;
     }
-
+    
+    public function getHits(){
+        return $this->Hits;
+    }
+    
     public function getCreated() {
         return $this->Created;
     }
@@ -167,7 +186,12 @@ class Story extends AbstractEntity {
         $this->PubDate = $PubDate;
         return $this;
     }
-
+    
+    public function setHits($Hits){
+        $this->Hits = $Hits;
+        return $this;
+    }
+    
     public function setCreated($Created) {
         $this->Created = $Created;
         return $this;
@@ -204,5 +228,10 @@ class Story extends AbstractEntity {
     
     public function setCategory($Category){
         $this->Category = $Category;
+    }
+    
+    public function addTag($Tag){
+        $this->Tags->add($Tag);
+        $Tag->addStory($this);
     }
 }

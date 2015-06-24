@@ -4,6 +4,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Landing extends CI_Controller {
     
+    private $ItemsPerPage = 10;
+    
     public function __construct(){
     	parent::__construct();
     	//loading slider model
@@ -15,12 +17,20 @@ class Landing extends CI_Controller {
 		try 
 		{
 			$this->load->model('Category_model' , 'categoryModel' );
+			$this->load->model('Article_model' , 'articleModel' );
+			$page = $this->input->get('page');
+			if(!isset($page) || empty($page)){
+				$page = 1;
+			}
+			
+			$recents = $this->articleModel->getAll($page - 1 , $this->ItemsPerPage);
+			$pagesCount = ceil($recents->count() / $this->ItemsPerPage);
 			
 			//$menuCats = $this->categoryModel->getPrimaryMenuCategories();
 		
 			$addons = array('carouFredSel');
 			$this->headscript->addAddons($addons);
-			$this->layout->render(array());	
+			$this->layout->render(array('recents' => $recents , 'pages' => $pagesCount));	
 		}
 		catch(\Exception $e)
 		{
@@ -38,20 +48,12 @@ class Landing extends CI_Controller {
 		{
 			$this->load->model('Article_model' ,'articleModel');
 			$this->load->model('Category_model' , 'categoryModel' );
-			$menupr = $this->categoryModel->getPrimaryMenuCategories();
-			$menusc = $this->categoryModel->getSecondaryMenuCategories();
-			
-			$fpt  = $this->categoryModel->getFpt();
-			$fpb = $this->categoryModel->getFpb();
-			
-			$article = $this->articleModel->getById(4);
+			$slug = $this->uri->segment(2);
+			$article = $this->articleModel->getBySlug($slug);
+			$this->articleModel->updateHits($article);
 			//var_dump($article);
 			$this->layout->render(array(
-				'article' =>$article ,
-				'menupr' => $menuCats,
-				'menusc' => $menuCats,
-				'fpt' => $fpt , 
-				'fpb' => $fpb
+				'article' =>$article 
 				)
 			);
 		}
@@ -68,12 +70,16 @@ class Landing extends CI_Controller {
 	public function category(){
 		try
 		{
-			echo $this->uri->segment(1);
-			echo $this->uri->segment(2);
+			
+			$slug = $this->uri->segment(2);
+			$category = $this->category_model->getBySlug($slug);
+			
+			$this->layout->render(array('category' => $category));
+			
 		}
 		catch(\Exception $e)
 		{
-			//Render error page.
+			$this->error($e);
 		}
 	}
 	

@@ -194,10 +194,12 @@ class Admin extends _Controller {
 			$this->layout->render(array('categories' => $categories));
 		}
 		catch(\Exception $e){
-			$this->layout->setLayout('error/index');
-			$this->layout->setViewFolder('errors');
-			$this->layout->setView('404');
-			$this->layout->render(array('message' => $e->getMessage()));
+			$this->error($e);
+			// exit('sunt erori');
+			// $this->layout->setLayout('error/index');
+			// $this->layout->setViewFolder('errors');
+			// $this->layout->setView('404');
+			// $this->layout->render(array('message' => $e->getMessage()));
 		}
 		
 	}
@@ -212,38 +214,62 @@ class Admin extends _Controller {
 			$this->load->model('Article_model' ,'articleModel');
 			$this->load->model('Image_model' ,'imageModel');
 			$this->load->model('Category_model' ,'categoryModel');
+			$this->load->model('Tag_model' ,'tagModel');
 			
 			$id = $this->input->get('id');
 			$article = $this->articleModel->getById($id);
 			
 			$this->form_validation->set_rules('Title', 'Title', 'required');
-	    	$this->form_validation->set_rules('Slug', 'Slug', 'required');
-			
-			
+	    	// $this->form_validation->set_rules('Slug', 'Slug', 'required');
 			
 			if($this->isPost()){
+				
+				$config = array(
+					'upload_path' => "./public/data/original",
+					'allowed_types' => "gif|jpg|png|jpeg|pdf",
+					'overwrite' => TRUE,
+					'max_size' => "2048000", // Can be set to particular file size , here it is 2 MB(2048 Kb)
+					'max_height' => "768",
+					'max_width' => "1024",
+					'file_name' => strtoupper(md5( 'coverfile' .time()) )
+				);
+				
+				$this->load->library('upload', $config);
+				
 				if ($this->form_validation->run() == true)
 				{	
 					$post = $this->input->post();
+					//var_dump($post);exit();
 					$category = $this->categoryModel->getById($post['CategoryId']);
 					$post['Category'] = $category;
 					
+					if(isset($_FILES['Cover']['name']) && !empty($_FILES['Cover']['name'])){
+						if($this->upload->do_upload('Cover'))
+						{
+							$data = array('upload_data' => $this->upload->data());
+						}
+						else
+						{
+							throw new \Exception('Nu s-a putut salva imaginea de cover');
+						}
+						
+						$cover = $this->imageModel->add($data['upload_data']);
+						$post['Cover'] = $cover;
+					}
+					//var_dump($post);exit();
 					//save
 					$this->articleModel->save($article , $post);
 					redirect('/admin/editArticle?id=' . $id);
-					//exit('not valid');
 				}
-				
-				//Handle post request, validation...
 			}
 			$categories = $this->categoryModel->getAll();
-			
+			$tags = $this->tagModel->getAll();
 			$addons = array('jQuery-tagEditor-master', 'ckeditor', 'jQueryUI' , 'datetimepicker');
 			$this->headscript->addAddons($addons);
 			$this->headlink->addAddons($addons);
 			
 		    $this->layout->setLayout('admin/admin_layout');
-			$this->layout->render(array('article' => $article , 'categories' => $categories));
+			$this->layout->render(array('article' => $article , 'categories' => $categories, 'tags' => $tags));
 		}
 		catch(\Exception $e){
 			$this->layout->setLayout('error/index');
@@ -304,7 +330,7 @@ class Admin extends _Controller {
 						//$error = array('error' => $this->upload->display_errors());
 					}
 					
-					$image = $this->imageModel->add($data['upload_data']);
+					$image = $this->imageModel->add($data['upload_data'] , array('medium' => array('width' => 100 , 'height' => 50)));
 					$post['Image'] = $image;
 					
 					$this->sliderModel->add($post);
@@ -328,7 +354,7 @@ class Admin extends _Controller {
 							throw new \Exception('Nu s-a putut salva imaginea de cover');
 							//$error = array('error' => $this->upload->display_errors());
 						}
-						$image = $this->imageModel->add($data['upload_data']);
+						$image = $this->imageModel->add($data['upload_data'] , array('medium' => array('width' => 300 , 'height' => 150)));
 						$post['Image'] = $image;
 					}
 					
@@ -519,10 +545,13 @@ class Admin extends _Controller {
         ;
     }
     private function error($Error){
-    	$this->layout->setLayout('error/index');
-		$this->layout->setViewFolder('errors');
-		$this->layout->setView('error');
-		$this->layout->render(array('message' => $Error->getMessage()));
+    	echo $Error->getMessage() . '<br/>';
+    	exit('eroare');
+    	
+  //  	$this->layout->setLayout('error/index');
+		// $this->layout->setViewFolder('errors');
+		// $this->layout->setView('error');
+		// $this->layout->render(array('message' => $Error->getMessage()));
     }
     
     /**************************************************************************/

@@ -19,6 +19,16 @@ class Comment {
     /**
      * @Column(type="string") @var string 
      */
+    protected $Email;
+    
+    /**
+     * @Column(type="string") @var string 
+     */
+    protected $Website;
+    
+    /**
+     * @Column(type="text") @var string 
+     */
     protected $Content;
     
     /**

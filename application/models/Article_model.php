@@ -21,18 +21,19 @@ class Article_model extends CI_Model {
         $qb->select('u')
             ->from('Entity:Story', 'u')
             ->setMaxResults($limit)
-            ->setFirstResult($offset);
+            ->setFirstResult($offset * $limit)
+            ->orderBy('u.PubDate' , 'DESC');
 
         $query = $qb->getQuery();
 
         $paginator = new Paginator( $query );
-       
+        
         return $paginator;
         
     }
     
     public function getById($id){
-        //echo $id;
+        
         $article = $this->doctrine->em->getRepository('Entity:Story')->findBy(array('StoryId' => $id ));
         if(isset($article[0])){
             return $article[0];
@@ -42,6 +43,14 @@ class Article_model extends CI_Model {
         
         
         exit();
+    }
+    
+    public function getBySlug($Slug){
+         $article = $this->doctrine->em->getRepository('Entity:Story')->findBy(array('Slug' => $Slug , 'Status' => 1));
+        if(isset($article[0])){
+            return $article[0];
+        }
+        throw new \Exception('Articolul nu a fost gasit');
     }
     
     public function getArticlesByCategory($CategoryId){
@@ -66,6 +75,11 @@ class Article_model extends CI_Model {
         
         if(isset($Data['Category'])){
             $article->setCategory($Data['Category']);    
+        }
+        
+        if(!isset($Data['Slug']) || empty($Data['Slug'])){
+            $slug = Utils::slugify($Data['Title']);
+            $article->setSlug($slug);
         }
         
         $this->doctrine->em->persist($article);
@@ -93,7 +107,28 @@ class Article_model extends CI_Model {
             $Article->setStatus(99);
         }
         
-        //var_dump($Article);exit();
+        if(!isset($Data['Slug']) || empty($Data['Slug'])){
+            $slug = Utils::slugify($Data['Title']);
+            $Article->setSlug($slug);
+        }
+        
+        if(isset($Data['Tags']) && !empty($Data['Tags'])){
+            $this->clearArticleTags($Article);
+            $tagnames = $Data['Tags'];
+            $tagnames = explode(',' , $tagnames);
+            
+            foreach($tagnames as $tagname){
+               
+                $tag = $this->getTag($tagname);
+                if(!$tag){
+                    $tag = new \models\Entities\Tag();
+                    $tag->setTitle($tagname);
+                    $tag->setSlug(Utils::slugify($tagname));
+                }
+                $Article->addTag($tag);
+                $this->doctrine->em->persist($tag);
+            }
+        }
         
         $this->doctrine->em->persist($Article);
         $this->doctrine->em->flush();
@@ -113,7 +148,34 @@ class Article_model extends CI_Model {
         
     }
     
+    public function updateHits($Article){
+        $currHits = $Article->getHits();
+        $Article->setHits($currHits + 1);
+        $this->doctrine->em->persist($Article);
+        $this->doctrine->em->flush();
+    }
     
+    public function getTag($tagname){
+        $ts = Utils::slugify($tagname);
+        // var_dump($ts);
+        // exit();
+        $tag = $this->doctrine->em->getRepository('Entity:Tag')->findBy(array('Slug' => $ts));
+        if(isset($tag[0])){
+            return $tag[0];
+        }
+        return false;
+    }
+    
+    public function clearArticleTags($Article){
+        $tags = $Article->getTags();
+        foreach($tags as $tag){
+            $Article->getTags()->removeElement($tag);
+            $tag->getStories()->removeElement($Article);
+            $this->doctrine->em->persist($tag);
+            //$this->doctrine->em->flush($tag);
+        }
+        
+    }
     
 }
 

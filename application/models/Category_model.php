@@ -40,7 +40,18 @@ class Category_model extends CI_Model {
         }
         throw new \Exception('Nu exista o categorie cu acest id.');
     }
- 
+    
+    /**
+     * Intoarce o categorie dupa slugul ei.
+     */
+    public function getBySlug($Slug){
+        $cats = $this->doctrine->em->getRepository('Entity:Category')->findBy(array('Slug' => $Slug , 'Status' => 1));
+        if(isset($cats[0])){
+            return $cats[0];
+        }
+        throw new \Exception('Nu exista o categorie cu acest id.');
+    }
+    
     /**
      * Adauga o categorie noua.
      */

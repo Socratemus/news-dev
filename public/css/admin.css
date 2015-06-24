@@ -137,7 +137,7 @@ main{
     -moz-border-radius: 2px 2px 0 0;
     border-radius: 2px 2px 0 0;
     border-bottom: 1px solid #cfcfcf;
-    height: 42px;
+    min-height: 42px;
     padding: 0 15px;
     line-height: 42px;
 }

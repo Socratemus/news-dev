@@ -20,6 +20,7 @@ var app = {
             circular: true,
             responsive : true,
             items                : 3,
+            // height : 200,
             direction            : "left",
             scroll : {
                 items            : 1,

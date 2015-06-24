@@ -30,6 +30,7 @@
         <span class="tools">
           <i class="fa fa-cogs"></i>
         </span>
+        <div class="clearfix"></div>
     </div>
     <div class="widget-body">
         <div class="col-md-6 extended">
@@ -87,8 +88,7 @@
 
                 <div class="col-xs-12">
                     <label>Taguri</label>
-                
-                     <input type="text" id="demo2" />
+                     <input type="text" name="Tags" id="demo2" />
                 </div>
             </div>
             
@@ -153,15 +153,38 @@
     <?php endif;?>
 </form>
 
+<?php
+    $initial = array();
+    $allTags = array();
+    
+    foreach($article->getTags() as $tg){
+        // echo $tg->getTitle();
+        array_push($initial , $tg->getTitle());
+    }
+    foreach($tags as $tg){
+        // echo $tg->getTitle();
+        array_push($allTags , $tg->getTitle());
+    }
+    $initial = json_encode($initial);
+    $allTags = json_encode($allTags);
+?>
+
 <script type="text/javascript">
+    var initialTags = <?php echo $initial;?>;
+    var allTags = <?php echo $allTags;?>;
     $().ready(function(){
+        //console.log(initialTags);
         //ADD JQUERY UI TO ENABLE AUTOCOMPLETE!!
         $('#demo2').tagEditor({
             autocomplete: {
                 delay: 0, // show suggestions immediately
                 position: { collision: 'flip' }, // automatic menu position up/down
-                source: ['ActionScript', 'AppleScript', 'Asp','Python', 'Ruby']
+                source: allTags
             },
+            onChange :function (field, editor, tags){
+                console.log(field, editor, tags); 
+            },
+            initialTags: initialTags,
             forceLowercase: false,
             placeholder: 'Cuvinte cheie ale stirii'
         });

@@ -242,7 +242,9 @@ article.mn > .meta-data .pub-date{
 article.mn > .desc{
     margin-top : 10px;
 }
-
+article.mn > .desc p{
+    word-break :break-word;
+}
 article.hz{
     margin-bottom : 20px;
 }
@@ -322,12 +324,12 @@ ul.featured > li {
 
 .crs{
     min-height : 300px;
-    background-color : rgba(0,0,0,.25);
+    background-color : white;
 }
 
 .crs > div{
     display : inline-block;
-
+    vertical-align : top;
     width : 33.3333%;
 }
 

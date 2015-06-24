@@ -12,14 +12,14 @@ class Image_model extends CI_Model {
         parent::__construct();
     }
     
-    public function add($Data = false){
+    public function add($Data = false , $Options = array()){
         
         $name = $Data['file_name'];
         $path = $Data['full_path'];
         
-        $thumb  =  $this->generateThumb($path , $name);
-        $medium =  $this->generateMedium( $path , $name );
-        $big    =  $this->generateBig( $path , $name );
+        $thumb  =  $this->generateThumb($path , $name , $Options );
+        $medium =  $this->generateMedium( $path , $name , $Options );
+        $big    =  $this->generateBig( $path , $name , $Options );
         
         $data = array(
             'Thumb' => base_url($thumb) ,
@@ -39,25 +39,31 @@ class Image_model extends CI_Model {
     
     /**************************************************************************/
     
-    private function generateThumb($Path , $Name) {
+    private function generateThumb($Path , $Name , $Options) {
         $image = new Imagick($Path);
-        $image->cropThumbnailImage( 120, 100 );
+        $width = 120; $width = isset($Options['thumb']['width']) ? $Options['thumb']['width'] : $width; 
+        $height = 90; $height = isset($Options['thumb']['height']) ? $Options['thumb']['height'] : $height;
+        $image->cropThumbnailImage( $width, $height );
         $savePath = $this->FolderThumb . "/" . $Name;
         $image->writeImage( $savePath );
         return $savePath;
     }
     
-    private function generateMedium($Path , $Name) {
+    private function generateMedium($Path , $Name , $Options) {
          $image = new Imagick($Path);
-         $image->cropThumbnailImage( 360, 300 );
+         $width = 360; $width = isset($Options['medium']['width']) ? $Options['medium']['width'] : $width; 
+         $height = 250; $height = isset($Options['medium']['height']) ? $Options['medium']['height'] : $height;
+         $image->cropThumbnailImage( $width, $height );
          $savePath = $this->FolderMedium . "/" . $Name;
          $image->writeImage( $this->FolderMedium . "/" . $Name );
          return $savePath;
     }
     
-    private function generateBig($Path , $Name) {
+    private function generateBig($Path , $Name , $Options) {
          $image = new Imagick($Path);
-         $image->cropThumbnailImage( 720, 600 );
+         $width = 720; $width = isset($Options['big']['width']) ? $Options['big']['width'] : $width; 
+         $height = 520; $height = isset($Options['big']['height']) ? $Options['big']['height'] : $height;
+         $image->cropThumbnailImage( $width, $height );
          $savePath = $this->FolderBig . "/" . $Name;
          $image->writeImage( $this->FolderBig . "/" . $Name );
          return $savePath;

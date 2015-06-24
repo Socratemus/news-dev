@@ -52,7 +52,7 @@
     </div>
 </div>
 
-<div class="header-bottom row">
+<div class="header-bottom hidden-xs row">
     
     <div class="col-md-3">
         <h3 class="uppercase mt20 ml50 pl10">Breaking News</h3>
