@@ -2,7 +2,7 @@
     
     <div class="col-md-12 extended mt15" style="border-bottom : 1px solid #eee;">
         
-        <h1 class="title-big">2016 Porsche Cayman GT4 Revealed</h1>    
+        <h1 class="title-big col-md-12"><?php echo $article->getTitle();?></h1>    
         
         <div class="mt20 mb10 col-md-5">
             <p class="pub-data">By <a href="" class="author">Cornelius Maximus</a> <span class="pub-date">February 16, 2015 </span> <a href="">0 comments</a></p>    
@@ -27,7 +27,7 @@
             
             
             <div class="cv mb15">
-                <img src="http://demo.wpzoom.com/compass/files/2015/02/2015-Porsche-Cayman-GT4-Blue-5-1920x1200.jpg" alt="" />
+                <img src="<?php echo $article->getCover()->getBig();?>" alt="" />
             </div>    
             <div class="entry-content">
                 <?php echo $article->getLongDescription();?>
@@ -95,7 +95,7 @@
         <sidebar class="col-md-4">
             
             <ul class="nav nav-tabs side-nav mb15">
-            
+                
                 <li class="active">
                     <a href="#recent" data-toggle="tab">
                     Recent Posts
@@ -111,56 +111,52 @@
                         Arhive
                     </a>
                 </li>
-                
+                    
             </ul>
-            
+                
             <div class="tab-content" id="tabs">
-            
+                
                 <div class="tab-pane active" id="recent">
                     
+                    <?php $mostViewed = $this->article_model->getMostViewed();?>
+                    <?php foreach($mostViewed as $mv):?>
                     <article class="sb">
-        
+                        
                         <div class="col-xs-4 cv pl0">
-                            <img src="http://demo.wpzoom.com/compass/files/2015/02/100708_Pudong_Hero_PR-90x75.jpeg" alt="article-title">
+                            <img src="<?php echo $mv->getCover()->getMedium();?>" alt="<?php echo $mv->getTitle();?>" />
                         </div>
                         
                         <div class="col-xs-8 extended">
-                            <h3><a href="">This fierce blizzard has made February Boston’s snowiest month ever</a></h3>
+                            <h5 class="mt0"><a href="<?php echo site_url('/a/' . $mv->getSlug())?>"><?php echo $mv->getTitle();?></a></h5>
                         </div>
                         
                         <div class="clearfix"></div>
                     </article>
+                    <?php endforeach;?>
                                     
                                     
                 </div>
-                
+                    
                 <div class="tab-pane" id="tags">
                     
-                    <a href="" class="tag-name">Sport</a>
-                    <a href="" class="tag-name">Politica</a>
-                    <a href="" class="tag-name">Audi</a>
+                    <?php foreach($this->tag_model->getAll() as $tag) :?>
+                        <a href="<?php echo site_url('/tag/' . $tag->getSlug());?>" class="tag-name"><?php echo $tag->getTitle();?></a>
+                    <?php endforeach;?>
                         
                 </div>
-                
+                    
                 <div class="tab-pane" id="archive">
+                    <?php $months = $this->article_model->getMonths(); ?>
                     <ul class="pl0 archive">
-                    	<li><a href="">February 2015</a></li>
-                    	<li><a href="">January 2015</a></li>
-                    	<li><a href="">March 2014</a></li>
-                    	<li><a href="">October 2013</a></li>
-                    	<li><a href="">April 2013</a></li>
-                    	<li><a href="">March 2013</a></li>
-                    	<li><a href="">February 2013</a></li>
-                    	<li><a href="">August 2012</a></li>
-                    	<li><a href="">June 2012</a></li>
-                    	<li><a href="">May 2012</a></li>
-                    	<li><a href="">April 2012</a></li>
-                    	<li><a href="">March 2012</a></li>
+                        <?php foreach($months as $date) : $date['MONTH'] = $date['MONTH'] < 10 ? '0' . $date['MONTH'] : $date['MONTH'] ?>
+                        
+                    	<li><a href=""><?php echo Utils::getMonth($date['MONTH'])?> <?php echo $date['YEAR']?></a></li>
+                    	<?php endforeach;?>
             		</ul>
                 </div>
             </div>
-            
-            <div class="col-md-12 extended mt30">
+                
+            <div class="col-md-12 extended mt30 hide">
                 <h3 class="main-section-title uppercase title">
                     <span>
                         <a href="">Tehnology</a>
@@ -211,7 +207,7 @@
                 </ul>
                 
             </div>
-            
+            <div class="clearfix"></div>
         </sidebar>
         
     </div>

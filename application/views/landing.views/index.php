@@ -105,7 +105,7 @@
                 <img src="<?php echo $article->getCover()->getMedium();?>" alt="<?php echo $article->getTitle();?>" /> 
             </div>
             <div class="col-xs-7">
-                <h3 class="article-title">
+                <h3 class="article-title mt0">
                     <a href="<?php echo site_url('/a/' . $article->getSlug())?>">
                         <?php echo $article->getTitle();?>
                     </a>
@@ -137,12 +137,12 @@
     </div>    
         
     <div class="col-md-4">
-        
+         
         <ul class="nav nav-tabs side-nav mb15">
             
             <li class="active">
                 <a href="#recent" data-toggle="tab">
-                Recent Posts
+                Cele mai vizualizuate
                 </a>
             </li>
             <li>
@@ -160,43 +160,37 @@
         
         <div class="tab-content" id="tabs">
             <div class="tab-pane active" id="recent">
-                <?php for($i = 0 ; $i < 4 ; $i++) :?>
+                <?php $mostViewed = $this->article_model->getMostViewed();?>
+                <?php foreach($mostViewed as $mv):?>
                 <article class="sb">
                     
                     <div class="col-xs-4 cv pl0">
-                        <img src="http://demo.wpzoom.com/compass/files/2015/02/100708_Pudong_Hero_PR-90x75.jpeg" alt="article-title" />
+                        <img src="<?php echo $mv->getCover()->getMedium();?>" alt="<?php echo $mv->getTitle();?>" />
                     </div>
                     
                     <div class="col-xs-8 extended">
-                        <h3><a href="">This fierce blizzard has made February Boston’s snowiest month ever</a></h3>
+                        <h5 class="mt0"><a href="<?php echo site_url('/a/' . $mv->getSlug())?>"><?php echo $mv->getTitle();?></a></h5>
                     </div>
                     
                     <div class="clearfix"></div>
                 </article>
-                <?php endfor;?>
+                <?php endforeach;?>
                 
             </div>
+            
             <div class="tab-pane" id="tags">
-                <?php for($i = 0 ; $i < 15 ; $i++) :?>
-                    <a href="" class="tag-name">Sport</a>
-                    <a href="" class="tag-name">Politica</a>
-                    <a href="" class="tag-name">Audi</a>
-                <?php endfor;?>
+                <?php foreach($this->tag_model->getAll() as $tag) :?>
+                    <a href="<?php echo site_url('/tag/' . $tag->getSlug());?>" class="tag-name"><?php echo $tag->getTitle();?></a>
+                    
+                <?php endforeach;?>
             </div>
             <div class="tab-pane" id="archive">
+                <?php $months = $this->article_model->getMonths(); ?>
                 <ul class="pl0 archive">
-                	<li><a href="">February 2015</a></li>
-                	<li><a href="">January 2015</a></li>
-                	<li><a href="">March 2014</a></li>
-                	<li><a href="">October 2013</a></li>
-                	<li><a href="">April 2013</a></li>
-                	<li><a href="">March 2013</a></li>
-                	<li><a href="">February 2013</a></li>
-                	<li><a href="">August 2012</a></li>
-                	<li><a href="">June 2012</a></li>
-                	<li><a href="">May 2012</a></li>
-                	<li><a href="">April 2012</a></li>
-                	<li><a href="">March 2012</a></li>
+                    <?php foreach($months as $date) : $date['MONTH'] = $date['MONTH'] < 10 ? '0' . $date['MONTH'] : $date['MONTH'] ?>
+                    
+                	<li><a href=""><?php echo Utils::getMonth($date['MONTH'])?> <?php echo $date['YEAR']?></a></li>
+                	<?php endforeach;?>
         		</ul>
             </div>
         </div>

@@ -7,7 +7,7 @@
         <?php echo $this->headlink;?>
         
         <?php echo $this->headscript;?>
-        
+        <title>TOP24H - Top NEWS 24H A DAY</title>
     </head>
     
     <body>

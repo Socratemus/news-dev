@@ -25,9 +25,6 @@ class Landing extends CI_Controller {
 			
 			$recents = $this->articleModel->getAll($page - 1 , $this->ItemsPerPage);
 			$pagesCount = ceil($recents->count() / $this->ItemsPerPage);
-			
-			//$menuCats = $this->categoryModel->getPrimaryMenuCategories();
-		
 			$addons = array('carouFredSel');
 			$this->headscript->addAddons($addons);
 			$this->layout->render(array('recents' => $recents , 'pages' => $pagesCount));	
@@ -70,11 +67,17 @@ class Landing extends CI_Controller {
 	public function category(){
 		try
 		{
+			$page = $this->input->get('page');
+			if(!isset($page) || empty($page)){
+				$page = 1;
+			}
 			
 			$slug = $this->uri->segment(2);
 			$category = $this->category_model->getBySlug($slug);
+			$articles = $this->category_model->getPagesStories($category , $page - 1 , $this->ItemsPerPage);
+			$pagesCount = ceil($articles->count() / $this->ItemsPerPage);
 			
-			$this->layout->render(array('category' => $category));
+			$this->layout->render(array('category' => $category , 'articles' => $articles , 'pages' => $pagesCount));
 			
 		}
 		catch(\Exception $e)

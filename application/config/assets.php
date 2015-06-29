@@ -3,10 +3,19 @@
 $config = array(
     'meta' => array(
         array('name' => 'robots', 'content' => 'no-cache'),
-        array('name' => 'description', 'content' => 'My News Site'),
-        array('name' => 'keywords', 'content' => 'Stiri - stiri online, stiri TV, stiri video, stiri mobil, news, stiri romania, politica, social, economic, externe, tehnologie, stiinta, it, fun, funmix, sport, sanatate, vremea, horoscop, revista presei, ultimele stiri, breaking news, news alert'),
+        // array('name' => 'description', 'content' => 'My News Site'),
+        // array('name' => 'title', 'content' => 'TOP24H'),
+        // array('name' => 'keywords', 'content' => 'Stiri - stiri online, stiri TV, stiri video, stiri mobil, news, stiri romania, politica, social, economic, externe, tehnologie, stiinta, it, fun, funmix, sport, sanatate, vremea, horoscop, revista presei, ultimele stiri, breaking news, news alert'),
         array('name' => 'robots', 'content' => 'INDEX,FOLLOW'),
-        array('name' => 'Content-type', 'content' => 'text/html; charset=utf-8', 'type' => 'equiv')
+        array('name' => 'robots', 'content' => 'noodp,noydir'),
+        array('name' => 'expires', 'content' => 'never'),
+        array('name' => 'language', 'content' => 'Romanian'),
+        array('name' => 'country', 'content' => 'Romania'),
+        array('name' => 'viewport', 'content' => 'width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1'),
+        array('name' => 'Content-type', 'content' => 'text/html; charset=utf-8', 'type' => 'equiv'),
+        array('name' => 'content-language', 'content' => 'ro', 'type' => 'equiv'),
+        array('name' => 'cache-control', 'content' => 'no-cache', 'type' => 'equiv'),
+        array('name' => 'pragma', 'content' => 'no-cache', 'type' => 'equiv')
     ),
     'css' => array(
         'public/addons/bootstrap-3.3.4-dist/css/bootstrap.css',

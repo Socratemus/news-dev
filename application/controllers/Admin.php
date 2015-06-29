@@ -290,7 +290,17 @@ class Admin extends _Controller {
 	 * Edit seo configuration.
 	 */
 	 public function seo(){
-	     
+	    try 
+        {
+        	
+        	
+        	$this->layout->setLayout('admin/admin_layout_test');
+			$this->layout->render(array());
+        }
+        catch(\Exception $e)
+        {
+        	echo $e->getMessage();
+        }
 	 }
 	 
 	 public function slider(){

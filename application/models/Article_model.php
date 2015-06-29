@@ -65,6 +65,36 @@ class Article_model extends CI_Model {
         throw new \Exception('Method not implemented');
     }
     
+    public function getMostViewed(){
+        $em = $this->doctrine->em;
+        $qb = $em->createQueryBuilder();
+
+        $qb->select('u')
+            ->from('Entity:Story', 'u')
+            ->setMaxResults(5)
+            ->orderBy('u.Hits' , 'DESC')
+            ->addOrderBy('u.PubDate', 'DESC');;
+
+        $result =  $qb->getQuery()->getResult();
+        return $result;
+    }
+    
+    public function getMonths(){
+        $em = $this->doctrine->em;
+        $sql = " 
+            SELECT YEAR( PubDate ) AS YEAR, MONTH( PubDate ) AS 
+            MONTH 
+            FROM Stories
+            
+            GROUP BY MONTH , YEAR
+            ORDER BY PubDate DESC 
+        ";
+    
+        $stmt = $em->getConnection()->prepare($sql);
+        $stmt->execute();
+        return $stmt->fetchAll();
+    }
+    
     public function addArticle($Data){
         $Data['PubDate'] = new \DateTime($Data['PubDate']);
         $article = new \models\Entities\Story();

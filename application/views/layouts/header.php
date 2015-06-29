@@ -1,7 +1,7 @@
 <div class="header-top row">
     
     <div class="col-md-3 ">
-        <h1 class="mt35"><strong>iNEWS</strong></h1>
+        <h1 class="mt35 pl50"><strong>TOP24H</strong></h1>
     </div>
     
     <div class="col-md-7">
