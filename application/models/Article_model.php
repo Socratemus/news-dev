@@ -57,8 +57,28 @@ class Article_model extends CI_Model {
         throw new \Exception('Method not implemented');
     }
     
-    public function getArticlesByMonth($Month){
-        throw new \Exception('Method not implemented');
+    public function getArticlesByMonth($Date){
+        $ld = cal_days_in_month(null,$Date->format('m') , $Date->format('Y'));
+        $startDate = $Date;
+        $endDate = new \DateTime($Date->format('Y') . '-' . $Date->format('m') . '-' . $ld);
+        $em = $this->doctrine->em;
+        
+       
+        $qb = $em->createQueryBuilder();
+        $qb->select('u')
+            ->from('Entity:Story', 'u')
+            ->where('u.PubDate >= :startdate')
+            ->andWhere('u.PubDate <= :enddate')
+            //->andWhere('MONTH(u.PubDate) = :month')
+            ;
+    
+        $qb->setParameter('startdate', $startDate)
+           ->setParameter('enddate', $endDate)
+           ;
+        
+        $query = $qb->getQuery();
+        return $query->getResult();
+        
     }
     
     public function getArticlesByTag($Tag){
@@ -112,6 +132,12 @@ class Article_model extends CI_Model {
             $article->setSlug($slug);
         }
         
+        if(isset($Data['Author']) && !empty($Data['Author'])){
+            $user = $this->user_model->getById($Data['Author']);
+            
+            $article->setAuthor($user);
+        }
+        
         $this->doctrine->em->persist($article);
         $this->doctrine->em->flush();
         return $article;
@@ -158,6 +184,12 @@ class Article_model extends CI_Model {
                 $Article->addTag($tag);
                 $this->doctrine->em->persist($tag);
             }
+        }
+        
+        if(isset($Data['Author']) && !empty($Data['Author'])){
+            $user = $this->user_model->getById($Data['Author']);
+            
+            $Article->setAuthor($user);
         }
         
         $this->doctrine->em->persist($Article);

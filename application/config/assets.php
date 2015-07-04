@@ -33,7 +33,14 @@ $config = array(
         'public/js/inline.js'
     ),
     'addons' => array(
-        
+        'jqueryValidate' => array(
+            'js' => array(
+                'public/addons/jquery-validator/dist/jquery.validate.js'
+            ),
+            'css' => array(
+                
+            )
+        ),
         'jQueryUI' => array(
             'js' => array(
                 'public/addons/jquery-ui-1.11.4.custom/jquery-ui.min.js'

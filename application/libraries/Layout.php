@@ -9,6 +9,8 @@ class Layout
     public $layoutsFodler = 'layouts';
     public $layout = 'default';
     
+    protected $meta = array();
+    
     public $css = array();
     var $obj;
 
@@ -56,10 +58,29 @@ class Layout
     
     //**************************************************************************
     public function getMeta(){
+        $ret = array();
+        
         if(isset($this->obj->config->config['meta'])){
-            return $this->obj->config->config['meta'];
+            foreach($this->obj->config->config['meta'] as $mt){
+                array_push($ret , $mt);
+            }
+
         }
-        return array();
+        
+        foreach($this->meta as $mt){
+            array_push($ret , $mt);
+        }
+        
+        return $ret;
+    }
+    
+    public function addMeta($meta = array()){
+        // if($type) {
+        //     $meta = array('name' => $Key, 'content' => $Desc, 'type' => $type);    
+        // } else {
+        //     $meta = array('name' => $Key, 'content' => $Desc);
+        // }
+        array_push($this->meta , $meta);
     }
     
 }

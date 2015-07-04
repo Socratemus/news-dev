@@ -62,7 +62,7 @@ class User_model extends CI_Model {
         $user = new models\Entities\User();
         
         $user->exchange($Input);
-        
+        //var_dump($Input);exit();
         $hash = \Utils::generateHash(30);
         
         $user->setHash($hash);
@@ -70,12 +70,63 @@ class User_model extends CI_Model {
         $password = sha1($hash . $user->getRealPassword());
         $user->setPassword($password);
         
+        if(isset($Input['Cover'])){
+            $user->setCover($Input['Cover']);
+        }
+        
         $this->doctrine->em->persist($user);
         
         $this->doctrine->em->flush();
         
         return $user;
         
+    }
+    
+    public function save($User , $Data){
+        
+        if(isset($Data['Cover']) && !empty($Data['Cover'])){
+            $User->setCover($Data['Cover']);
+        }
+        
+        if(isset($Data['Username']) && !empty($Data['Username'])){
+            $User->setUsername($Data['Username']);
+        }
+        
+        if(isset($Data['Firstname']) && !empty($Data['Firstname'])){
+            $User->setFirstname($Data['Firstname']);
+        }
+        
+        if(isset($Data['Lastname']) && !empty($Data['Lastname'])){
+            $User->setLastname($Data['Lastname']);
+        }
+        
+        if(isset($Data['Quota']) && !empty($Data['Quota'])){
+            $User->setQuota($Data['Quota']);
+        }
+        
+        $this->doctrine->em->persist($User);
+        
+        $this->doctrine->em->flush();
+        
+        return $User;    
+    }
+    
+    /**
+     * Return all users
+     */
+    public function getAll(){
+        return $this->doctrine->em->getRepository('Entity:User')->findBy(array('Access' => 2));
+    }
+    
+    public function getById($Id){
+        return $this->doctrine->em->getRepository('Entity:User')->find($Id);
+    }
+    
+    /**
+     * Returneaza autorii
+     */
+    public function getAuthors(){
+        return $this->doctrine->em->getRepository('Entity:User')->findBy(array('Access' => 2));
     }
     
 }

@@ -52,6 +52,11 @@ class User extends AbstractEntity {
     protected $Access = 0;
     
     /**
+     * @Column(type="text") @var string 
+     */
+    protected $Quota;
+    
+    /**
      * @Column(type="datetime") @var string 
      */
     protected $Created;
@@ -61,7 +66,13 @@ class User extends AbstractEntity {
      */
     protected $Updated;
     
-    private $Comments;
+    /**
+     * @OneToOne(targetEntity="Image")
+     * @JoinColumn(name="CoverId", referencedColumnName="ImageId" , onDelete="CASCADE")
+     **/
+    private $Cover;
+    
+    //private $Comments;
     
     public function __construct(){
         $this->Created = new \DateTime('now');
@@ -109,6 +120,14 @@ class User extends AbstractEntity {
         return $this->Access;
     }
 
+    public function getCover(){
+        return $this->Cover;
+    }
+    
+    public function getQuota(){
+        return $this->Quota;
+    }
+    
     public function getCreated()
     {
         return $this->Created;
@@ -170,6 +189,14 @@ class User extends AbstractEntity {
     {
         $this->Access = $Access;
         return $this;
+    }
+
+    public function setCover($Cover){
+        $this->Cover = $Cover;
+    }
+    
+    public function setQuota($Quota){
+        $this->Quota = $Quota;
     }
 
     public function setCreated($Created)

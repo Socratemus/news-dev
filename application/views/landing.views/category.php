@@ -1,5 +1,4 @@
 <div class="col-md-12 mt15" >
-    <!--<pre><?php var_dump($category);?></pre>-->
     <h1 class="col-md-12 extended title"><span><?php echo $category->getTitle();?></span></h1>    
     
     <div class="clearfix"></div>
@@ -112,7 +111,7 @@
                 <ul class="pl0 archive">
                     <?php foreach($months as $date) : $date['MONTH'] = $date['MONTH'] < 10 ? '0' . $date['MONTH'] : $date['MONTH'] ?>
                     
-                	<li><a href=""><?php echo Utils::getMonth($date['MONTH'])?> <?php echo $date['YEAR']?></a></li>
+                	<li><a href="<?php echo site_url($date['YEAR'] . '/' . $date['MONTH'])?>"><?php echo Utils::getMonth($date['MONTH'])?> <?php echo $date['YEAR']?></a></li>
                 	<?php endforeach;?>
         		</ul>
             </div>

@@ -14,35 +14,48 @@
     <div class="widget-body">
         
         <hr />
-        
-        <div class="row">
-            <div class="col-md-6">
-                <label>Nume</label>
-                <input type="text" name="Firstname" class="form-control"/>
+        <div class="col-md-3">
+            <div class="col-md-12">
+                <img width="100%" src="http://iamsrinu.com/bluemoon-admin-theme7/img/profile.png" alt="" />
             </div>
-            <div class="col-md-6">
-                <label>Prenume</label>
-                <input type="text" name="Lastname" class="form-control"/>
+            <div class="col-md-12">
+                <label>Adauga poza profil.</label>
+                <input type="file" name="Cover">
             </div>
         </div>
-        
-        <hr />
-        
-        <div class="row">
-            <div class="col-md-6">
-                <label>Username</label>
-                <input type="text" name="Username" class="form-control"/>
+        <div class="col-md-9">
+            <div class="row">
+                <div class="col-md-12">
+                    <label>Nume</label>
+                    <input type="text" name="Firstname" class="form-control"/>
+                </div>
+                <div class="col-md-12">
+                    <label>Prenume</label>
+                    <input type="text" name="Lastname" class="form-control"/>
+                </div>
+            
+                <div class="col-md-12">
+                    <label>Username</label>
+                    <input type="text" name="Username" class="form-control"/>
+                </div>
+                <div class="col-md-12">
+                    <label>Parola</label>
+                    <input type="password" name="RealPassword" class="form-control"/>
+                </div>
+                
+                <div class="col-md-12">
+                    <label>Quota</label>
+                    <textarea name="Quota" class="form-control"></textarea>
+                </div>
+                
             </div>
-            <div class="col-md-6">
-                <label>Parola</label>
-                <input type="password" name="RealPassword" class="form-control"/>
+            <hr />
+            <div class="row mt15">
+                <div class="col-md-6">
+                    <button class="btn btn-primary">Salveaza</button>
+                </div>
             </div>
         </div>
-        <hr />
-        <div class="row mt15">
-            <div class="col-md-6">
-                <button class="btn btn-primary">Salveaza</button>
-            </div>
-        </div>
+        <div class="clearfix"></div>
     </div>
 </form>

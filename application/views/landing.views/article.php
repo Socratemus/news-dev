@@ -5,15 +5,27 @@
         <h1 class="title-big col-md-12"><?php echo $article->getTitle();?></h1>    
         
         <div class="mt20 mb10 col-md-5">
-            <p class="pub-data">By <a href="" class="author">Cornelius Maximus</a> <span class="pub-date">February 16, 2015 </span> <a href="">0 comments</a></p>    
+            <?php $author = $article->getAuthor();?>
+            <p class="pub-data">
+                Scris de 
+                <?php if($author ) : ?>
+                <a href="javascript:void(0);" class="author"></a> 
+                <?php else : ?>
+                <a href="javascript:void(0);" class="author">Anonim</a> 
+                <?php endif;?>
+                <?php $pubDate = $article->getPubDate()->format('d') . ' ' . Utils::getMonth($article->getPubDate()->format('m')) . ', ' .$article->getPubDate()->format('Y') . ' ' . $article->getPubDate()->format('H:i');  ?>
+                <span class="pub-date"><?php echo $pubDate;?> </span>
+            
+            </p>    
         </div>
         
         <div class="share mt20 mb10 text-right col-md-7">
-            <a href="https://twitter.com/intent/tweet?url=myurl" target="_blank" title="Tweet this on Twitter" class="twitter"><i class="fa fa-twitter"></i> Tweet</a>
+            <a href="https://twitter.com/intent/tweet?url=<?php echo site_url('/a/' . $article->getSlug())?>" target="_blank" title="Tweet this on Twitter" onclick="app.popup(this);event.preventDefault();" class="twitter with-popup"><i class="fa fa-twitter"></i> Tweet</a>
+            
+            <a href="https://facebook.com/sharer/sharer.php?u=<?php echo site_url('/a/' . $article->getSlug())?>&display=popup&ref=plugin&src=share_button" target="_blank" onclick="app.popup(this);event.preventDefault();" title="Distribuie pe facebook Facebook" class="with-popup facebook"><i class="fa fa-facebook"></i> Share</a>
 
-            <a href="https://facebook.com/sharer.php?url=myurl" target="_blank" title="Share this on Facebook" class="facebook"><i class="fa fa-facebook"></i> Share</a>
-
-            <a href="https://plus.google.com/share?url=mylink" target="_blank" title="Post this to Google+" class="gplus"><i class="fa fa-google-plus"></i> Share</a>
+            <a href="https://plus.google.com/share?url=<?php echo site_url('/a/' . $article->getSlug())?>" target="_blank" title="Post this to Google+" onclick="app.popup(this);event.preventDefault();" class="gplus"><i class="fa fa-google-plus with-popup"></i> Share</a>
+            
             <div class="clear"></div>
         </div>
         
@@ -34,53 +46,70 @@
             </div>
             
             <hr />
-            
+           
+            <?php $author = $article->getAuthor(); if($author) : ?>
             <footer class="article-footer">
-                <div class="col-md-2 cv author">
-                    <img src="http://0.gravatar.com/avatar/d95e7dab8e934dcaa30a9829f50b2f6a?s=100&r=pg&d=mm" alt="author" />
+                <div class="col-md-2 extended cv author">
+                    <img src="<?php echo $author->getCover()->getMedium();?>" alt="author" />
                 </div>
                 <div class="col-md-10">
-                    <h3 class="mt10"><span>Written by</span> Cornelius Iancus </h3>
-                    <p class="mt15">Cras mattis consectetur purus sit amet fermentum. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum</p>
+                    
+                    <h3 class="mt10"><span>Scris de</span> <?php echo $author->getFirstname() . ' ' . $author->getLastname() ; ?> </h3>
+                    <p class="mt15"><?php echo $author->getQuota();?></p>
                 </div>
                 
                 <div class="clearfix"></div>
             </footer>
+            <?php endif;?>
             
             <hr />
+            <?php if($article->getComments()->count() > 0 ) :?>
+            <div class="comment-section hide">
+                <?php foreach($article->getComments() as $comment) :?>
+                <section class="comment">
+                    <h3><span class="capitalize"><?php echo $comment->getName();?></span> a spus :</h3>
+                
+                    <?php $pubDate = $comment->getCreated()->format('d') . ' ' . Utils::getMonth($comment->getCreated()->format('m')) . ', ' .$comment->getCreated()->format('Y') . ' ' . $comment->getCreated()->format('H:i');  ?>
+                    <em class="pub-data">La data de : <?php echo $pubDate; ?></em> <br/>
+                    <?php echo $comment->getContent();?>
+                    <hr />
+                </section>
+                <?php endforeach;?>
+            </div>
+            <?php else : ?>
+            <!--<h2>No comments</h2>-->
+            <!--<hr />-->
+            <?php endif; ?>
             
-            <h2>No comments</h2>
             
-            <hr />
-            
-            <h2>Lasa un comentariu</h2>
+            <h2 class="hide">Lasa un comentariu</h2>
              
-            <p class="mt15"><em>Your email address will not be published. Required fields are marked *</em></p>
+            <p class="mt15 hide"><em>Adresa ta de email / website nu vor fi publicate. Campurile marcate cu * sunt obligatorii.</em></p>
              
-            <form method="POST" class="col-md-12 mt15" action="">
-                <input type="hidden" name="StoryId" value="" />
+            <form method="POST" class="col-md-12 mt15 hide" action="<?php echo site_url('/landing/addComment');?>" id="CommentForm">
+                <input type="hidden" name="StoryId" value="<?php echo $article->getStoryId();?>" />
                 
                 <div class="row">
                     <div class="col-md-4 pl0">
                         <label>Nume</label>
-                        <input type="text" class="form-control" name="" placeholder="Numele tau">        
+                        <input type="text" class="form-control" name="Name" placeholder="Numele tau">        
                     </div>
                     
                     <div class="col-md-4">
                         <label>Email</label>
-                        <input type="email" class="form-control" name="" placeholder="E-mail">        
+                        <input type="email" class="form-control" name="Email" placeholder="E-mail">        
                     </div>
                     
                     <div class="col-md-4">
                         <label>Website</label>
-                        <input type="text" class="form-control" name="" placeholder="Website">        
+                        <input type="text" class="form-control" name="Website" placeholder="Website">        
                     </div>
                 </div>
                 
                 <div class="row mt15">
                     <div class="col-md-12 pl0">
                         <label>Comentariu *</label>
-                        <textarea name="Comment" class="form-control"></textarea>
+                        <textarea name="Content" class="form-control"></textarea>
                     </div>
                 </div>
                 
@@ -89,6 +118,8 @@
                 </div>
                 
             </form>
+             
+            <div class="fb-comments" data-href="<?php echo site_url('/a/' . $article->getSlug());?>" data-version="v2.3"></div>
              
         </article>
         
@@ -213,3 +244,9 @@
     </div>
     <div class="clearfix"></div>
 <!--</div>-->
+
+<script type="text/javascript">
+    $().ready(function(){
+        app.validateComment();
+    });
+</script>

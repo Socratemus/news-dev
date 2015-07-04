@@ -6,13 +6,11 @@
         
         <?php foreach($slides as $slide) :?>
         <div class="">
-            <img src="<?php echo $slide->getImage()->getMedium()?>" alt="" />
-            <h4 class="ml15"><?php echo $slide->getTitle();?></h4>
-            <!--<p class="ml15"><?php echo $slide->getContent();?></p>-->
-        </div>
-        <div class="">
-            <img src="<?php echo $slide->getImage()->getMedium()?>" alt="" />
-            <h4 class="ml15"><?php echo $slide->getTitle();?></h4>
+            <a href="<?php echo $slide->getUrl();?>">
+                <img src="<?php echo $slide->getImage()->getMedium()?>" alt="" />
+                <h4 class="ml15 mr15" style="word-break : break-all;"><?php echo $slide->getTitle();?></h4>    
+            </a>
+            
             <!--<p class="ml15"><?php echo $slide->getContent();?></p>-->
         </div>
         
@@ -53,7 +51,7 @@
             <div class="meta-data">
                 <?php $pubDate = $first->getPubDate()->format('d') . ' ' . Utils::getMonth($first->getPubDate()->format('m')) . ', ' .$first->getPubDate()->format('Y');  ?>
                 <span class="pub-date"><?php echo $pubDate;?> </span>
-                <span class="comm-no"><a href="">0 comentarii</a></span>
+                <span class="comm-no hide"><a href="">0 comentarii</a></span>
             </div>
             
             <div class="desc">
@@ -111,7 +109,14 @@
                     </a>
                 </h3>
                 <?php $pubDate = $article->getPubDate()->format('d') . ' ' . Utils::getMonth($article->getPubDate()->format('m')) . ', ' . $article->getPubDate()->format('Y');  ?>
-                <p class="pub-data">By <a href="" class="author">Cornelius Maximus</a> <span class="pub-date"><?php echo $pubDate;?></span> <a href="">0 comments</a></p>
+                <?php $author = $article->getAuthor(); ?>
+                <p class="pub-data">Scris de  
+                <?php if($author) : ?>
+                    <a href="" class="author"><?php echo $author->getFirstname() . ' ' . $author->getLastname(); ?></a>
+                <?php else :?>
+                    Anonim
+                <?php endif;?>
+                <span class="pub-date"><?php echo $pubDate;?></span> </p>
                 <p><?php echo $article->getShortDescription();?></p>
             </div>
             <div class="clearfix"></div>

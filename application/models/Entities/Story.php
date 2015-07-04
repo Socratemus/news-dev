@@ -73,6 +73,9 @@ class Story extends AbstractEntity {
      **/
     private $Category;
     
+    /**
+      * @OneToMany(targetEntity="Comment", mappedBy="Story")
+      **/
     private $Comments;
     
     /**
@@ -84,15 +87,20 @@ class Story extends AbstractEntity {
      **/
     private $Tags;
     
+    /**
+     * @ManyToOne(targetEntity="User")
+     * @JoinColumn(name="UserId", referencedColumnName="UserId" , onDelete="CASCADE")
+     **/
     private $Author;
 
     public function __construct() {
-        $this->Hits = 0;
-        $this->Tags    = new ArrayCollection();
-        $this->Created = new \DateTime('now');
-        $this->Updated = new \DateTime('now');
-        $this->PubDate = new \DateTime('now');
-        $this->Status = 1;
+        $this->Hits     = 0;
+        $this->Tags     = new ArrayCollection();
+        $this->Comments = new ArrayCollection();
+        $this->Created  = new \DateTime('now');
+        $this->Updated  = new \DateTime('now');
+        $this->PubDate  = new \DateTime('now');
+        $this->Status   = 1;
     }
 
     /* Setters and getters */
@@ -233,5 +241,10 @@ class Story extends AbstractEntity {
     public function addTag($Tag){
         $this->Tags->add($Tag);
         $Tag->addStory($this);
+    }
+    
+    public function addComment($Comment){
+        $this->Comments->add($Comment);
+        $Comment->setStory($this);
     }
 }

@@ -36,7 +36,6 @@ class Landing extends CI_Controller {
 			
 	}   
 	
-	
 	/**
 	 * Pagina articolului
 	 */
@@ -48,7 +47,35 @@ class Landing extends CI_Controller {
 			$slug = $this->uri->segment(2);
 			$article = $this->articleModel->getBySlug($slug);
 			$this->articleModel->updateHits($article);
+			
+			
 			//var_dump($article);
+			
+			$addons = array('jqueryValidate');
+			$this->headscript->addAddons($addons);
+			
+			/**
+			 * Facebook meta tags
+			 */
+			$this->layout->addMeta(array('name' => 'og:image', 'content' => $article->getCover()->getMedium(), 'type' => 'property'));
+			$this->layout->addMeta(array('name' => 'og:description', 'content' => $article->getTitle(), 'type' => 'property'));
+			$this->layout->addMeta(array('name' => 'og:url', 'content' => site_url('/a/' . $article->getSlug()), 'type' => 'property'));
+			$this->layout->addMeta(array('name' => 'og:title', 'content' => $article->getTitle(), 'type' => 'property'));
+			$this->layout->addMeta(array('name' => 'og:type',  'content' => 'article', 'type' => 'property'));
+			
+			/**
+			 * Twitter meta tags
+			 */
+		 	$this->layout->addMeta(array('name' => 'twitter:card', 'content' => 'summary'));
+		 	$this->layout->addMeta(array('name' => 'twitter:title', 'content' => $article->getTitle()));
+		 	$this->layout->addMeta(array('name' => 'twitter:image', 'content' => $article->getCover()->getMedium()));
+			
+			/**
+			 * Google plus meta tags
+			 */
+			 
+			
+			
 			$this->layout->render(array(
 				'article' =>$article 
 				)
@@ -93,17 +120,58 @@ class Landing extends CI_Controller {
 	public function month(){
 		try
 		{
-			throw new \Exception('no entries');
-			//Fetching news from that month
-			echo $this->uri->segment(1); // year
-			echo '<br/>';
-			echo $this->uri->segment(2); // month
+			// echo $this->uri->segment(1); // year
+			// echo '<br/>';
+			// echo $this->uri->segment(2); // month
+			$date = $this->uri->segment(1) . '/' . $this->uri->segment(2) . '/01';
+			$date = new \DateTime($date);
+			//var_dump($date);
+			
+			$articles = $this->article_model->getArticlesByMonth($date );
+			
+			$this->layout->render(array('date' => $date , 'articles' => $articles));
 		}
 		catch(\Exception $e)
 		{
+			echo $e->getMessage();exit();
 			$this->error($e);
 		}
 		
+	}
+	
+	public function addComment(){
+		try
+		{
+			$post = $this->input->post();
+			
+			$storyId = $post['StoryId'];
+			$content = $post['Content'];
+			$name = $post['Name'];
+			$email = $post['Email'];
+			$website = $post['Website'];
+			
+			$data = array(
+				'Name' => $name,
+				'Email' =>$email, 
+				'Website' => $website == '' ? 'none' : $website,
+				'Content' => $content
+			);
+			
+			$story = $this->article_model->getById($post['StoryId']);
+			$comm = new \models\Entities\Comment();
+			$comm->exchange($data);
+			$story->addComment($comm);
+			
+			$this->doctrine->em->persist($comm);
+			$this->doctrine->em->flush();
+			
+			redirect('/a/' . $story->getSlug() . '#CommentForm');
+			
+		}
+		catch(\Exception $e)
+		{
+			echo $e->getMessage();
+		}
 	}
 	
 	/**************************************************************************/

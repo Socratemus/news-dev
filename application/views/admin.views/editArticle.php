@@ -75,9 +75,12 @@
                 </div>
                 <div class="col-xs-6">
                     <label>Autor</label>
-                
-                    <select class="form-control" name="">
+                    <!--<?php //echo $article->getAuthor()->getUserId();?>-->
+                    <select class="form-control" name="Author">
                         <option>Selecteaza autorul</option>
+                        <?php foreach($authors as $author) : $sel = $article->getAuthor() && $article->getAuthor()->getUserId() == $author->getUserId(); ?>
+                        <option <?php echo $sel ? 'selected' : '';?> value="<?php echo $author->getUserId();?>"><?php echo $author->getFirstname() . ' ' .$author->getLastname(); ?></option>
+                        <?php endforeach;?>
                     </select>
                 </div>
             </div>

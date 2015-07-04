@@ -146,19 +146,13 @@ class Admin extends _Controller {
 			$this->load->model('Category_model' ,'categoryModel');
 			$this->load->model('Image_model' ,'imageModel');
 			
+			$authors = $this->user_model->getAuthors();
+			
 			if($this->isPost()){
 				//TODO VALIDARE FORMA
 				$post = $this->input->post();
 				
-				$config = array(
-					'upload_path' => "./public/data/original",
-					'allowed_types' => "gif|jpg|png|jpeg|pdf",
-					'overwrite' => TRUE,
-					'max_size' => "2048000", // Can be set to particular file size , here it is 2 MB(2048 Kb)
-					'max_height' => "768",
-					'max_width' => "1024",
-					'file_name' => strtoupper(md5( 'coverfile' .time()) )
-				);
+				$config = $this->getFileuploadConf();
 				
 				$this->load->library('upload', $config);
 				
@@ -168,7 +162,7 @@ class Admin extends _Controller {
 				}
 				else
 				{
-					throw new \Exception('Nu s-a putut salva imaginea de cover');
+					throw new \Exception('Nu s-a putut salva imaginea de cover <br />' . $this->upload->display_errors()	);
 					//$error = array('error' => $this->upload->display_errors());
 				}
 				
@@ -191,7 +185,7 @@ class Admin extends _Controller {
 			$this->headlink->addAddons($addons);
 			
 		    $this->layout->setLayout('admin/admin_layout');
-			$this->layout->render(array('categories' => $categories));
+			$this->layout->render(array('categories' => $categories , 'authors' => $authors));
 		}
 		catch(\Exception $e){
 			$this->error($e);
@@ -215,6 +209,7 @@ class Admin extends _Controller {
 			$this->load->model('Image_model' ,'imageModel');
 			$this->load->model('Category_model' ,'categoryModel');
 			$this->load->model('Tag_model' ,'tagModel');
+			$authors = $this->user_model->getAuthors();
 			
 			$id = $this->input->get('id');
 			$article = $this->articleModel->getById($id);
@@ -224,15 +219,7 @@ class Admin extends _Controller {
 			
 			if($this->isPost()){
 				
-				$config = array(
-					'upload_path' => "./public/data/original",
-					'allowed_types' => "gif|jpg|png|jpeg|pdf",
-					'overwrite' => TRUE,
-					'max_size' => "2048000", // Can be set to particular file size , here it is 2 MB(2048 Kb)
-					'max_height' => "768",
-					'max_width' => "1024",
-					'file_name' => strtoupper(md5( 'coverfile' .time()) )
-				);
+				$config = $this->getFileuploadConf();
 				
 				$this->load->library('upload', $config);
 				
@@ -269,7 +256,7 @@ class Admin extends _Controller {
 			$this->headlink->addAddons($addons);
 			
 		    $this->layout->setLayout('admin/admin_layout');
-			$this->layout->render(array('article' => $article , 'categories' => $categories, 'tags' => $tags));
+			$this->layout->render(array('article' => $article , 'categories' => $categories, 'tags' => $tags , 'authors' => $authors));
 		}
 		catch(\Exception $e){
 			$this->layout->setLayout('error/index');
@@ -340,7 +327,7 @@ class Admin extends _Controller {
 						//$error = array('error' => $this->upload->display_errors());
 					}
 					
-					$image = $this->imageModel->add($data['upload_data'] , array('medium' => array('width' => 100 , 'height' => 50)));
+					$image = $this->imageModel->add($data['upload_data'] , array('medium' => array('width' => 300 , 'height' => 230)));
 					$post['Image'] = $image;
 					
 					$this->sliderModel->add($post);
@@ -364,7 +351,7 @@ class Admin extends _Controller {
 							throw new \Exception('Nu s-a putut salva imaginea de cover');
 							//$error = array('error' => $this->upload->display_errors());
 						}
-						$image = $this->imageModel->add($data['upload_data'] , array('medium' => array('width' => 300 , 'height' => 150)));
+						$image = $this->imageModel->add($data['upload_data'] , array('medium' => array('width' => 300 , 'height' => 230)));
 						$post['Image'] = $image;
 					}
 					
@@ -489,6 +476,23 @@ class Admin extends _Controller {
 	 }
 	 
 	 /**
+	  * Listeaza utilizatorii
+	  */
+	 public function users(){
+	 	try
+	 	{
+	 		$users = $this->user_model->getAll();
+	 		
+	 		$this->layout->setLayout('admin/admin_layout');
+			$this->layout->render(array('users' => $users));
+	 	}
+	 	catch(\Exception $e)
+	 	{
+	 		$this->error($e);
+	 	}
+	 }
+	 
+	 /**
 	  * Adauga un autor nou
 	  */
 	 public function newUser(){
@@ -498,8 +502,26 @@ class Admin extends _Controller {
 	 		//Add user logic
 	 		
 	 		if($this->isPost()){
-	 			var_dump($this->input->post());
+	 			//var_dump($this->input->post());
 	 			$post = $this->input->post();
+	 			$config = $this->getFileuploadConf();
+	 			$this->load->library('upload', $config);
+	 			$this->load->model('image_model' , 'imageModel');
+	 			if(isset($_FILES['Cover']['name']) && !empty($_FILES['Cover']['name'])){
+					//Sterge poza veche...
+					if($this->upload->do_upload('Cover'))
+					{
+						$data = array('upload_data' => $this->upload->data());
+					}
+					else
+					{
+						throw new \Exception('Nu s-a putut salva imaginea de cover');
+						//$error = array('error' => $this->upload->display_errors());
+					}
+					$image = $this->imageModel->add($data['upload_data'] , array('medium' => array('width' => 500 , 'height' => 500)));
+					$post['Cover'] = $image;
+				}
+	 			
 	 			$user = $this->user_model->add($post);
 	 			redirect('admin/editUser?id=' . $user->getUserId());
 	 		}
@@ -513,10 +535,42 @@ class Admin extends _Controller {
 	 	}
 	 }
 	 
+	 /**
+	  * Editeaza un utilizator
+	  */
 	 public function editUser(){
 	 	try
 	 	{
+	 		$userId = $this->input->get('id');
+	 		$user = $this->user_model->getById($userId);
+	 		//var_dump($user);exit();
 	 		
+	 		if($this->isPost()){
+	 			$post = $this->input->post();
+	 			$config = $this->getFileuploadConf();
+	 			$this->load->library('upload', $config);
+	 			$this->load->model('image_model' , 'imageModel');
+	 			if(isset($_FILES['Cover']['name']) && !empty($_FILES['Cover']['name'])){
+					//Sterge poza veche...
+					if($this->upload->do_upload('Cover'))
+					{
+						$data = array('upload_data' => $this->upload->data());
+					}
+					else
+					{
+						throw new \Exception('Nu s-a putut salva imaginea de cover');
+						//$error = array('error' => $this->upload->display_errors());
+					}
+					$image = $this->imageModel->add($data['upload_data'] , array('medium' => array('width' => 500 , 'height' => 500)));
+					$post['Cover'] = $image;
+				}
+	 			
+	 			$this->user_model->save($user , $post);
+
+	 		}
+	 		
+	 		$this->layout->setLayout('admin/admin_layout');
+			$this->layout->render(array('user' => $user));
 	 	}
 	 	catch(\Exception $e)
 	 	{
@@ -524,6 +578,9 @@ class Admin extends _Controller {
 	 	}
 	 }
 	 
+	 /**
+	  * Sterge un utilizator
+	  */
 	 public function removeUser(){
 	 	try
 	 	{
@@ -562,6 +619,18 @@ class Admin extends _Controller {
 		// $this->layout->setViewFolder('errors');
 		// $this->layout->setView('error');
 		// $this->layout->render(array('message' => $Error->getMessage()));
+    }
+    private function getFileuploadConf(){
+    	$config = array(
+			'upload_path' => "./public/data/original",
+			'allowed_types' => "gif|jpg|png|jpeg|pdf",
+			'overwrite' => TRUE,
+			'max_size' => "20480000", // Can be set to particular file size , here it is 20 MB(2048 Kb)
+			'max_height' => "3036",
+			'max_width' => "4048",
+			'file_name' => strtoupper(md5( 'imagefile' .time()) )
+		);
+		return $config;
     }
     
     /**************************************************************************/

@@ -69,6 +69,8 @@
                           <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
                             <li><a href="<?php echo site_url('/admin/articles')?>">Listare articole</a></li>
                             <li><a href="<?php echo site_url('/admin/newArticle')?>">Adauga un articol</a></li>
+                            <li><a href="<?php echo site_url('/admin/users')?>">Listeaza autorii</a></li>
+                            <li><a href="<?php echo site_url('/admin/newUser')?>">Adauga un autor</a></li>
                           </ul>
                         </div>
                     </li>

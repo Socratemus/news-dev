@@ -16,11 +16,12 @@ var app = {
     },
     
     carouFredSel : function(){
+        if($('#Crs').length == 0) return;
         $('#Crs').carouFredSel({
             circular: true,
             responsive : true,
-            items                : 3,
-            // height : 200,
+            items                : 4,
+            // height : 300,
             direction            : "left",
             scroll : {
                 items            : 1,
@@ -32,9 +33,69 @@ var app = {
         
     },
     
+    validateComment : function(){
+        $('#CommentForm button').on('click' , function(){
+            $('#CommentForm').validate({rules: {
+                Name: {
+                    required: true,
+                    minlength: 2
+                },
+                Email : {
+                    required: true,
+                    email : true
+                },
+                Website : {
+                    required: false,
+                    url : true
+                },
+                Comment : {
+                    required: true,
+                    minlength: 5
+                }
+              },
+              messages: {
+                Name: {
+                  required: "We need your email address to contact you",
+                  minlength: jQuery.validator.format("At least {0} characters required!")
+                }
+              }
+              
+          });
+          var valid = $('#CommentForm').valid();
+          if(valid == true){
+                $('#CommentForm').submit();
+          } else {
+              
+          }
+          
+          return false;  
+        });
+        //console.log('validate comment');
+    },
+    
+    popup : function(El){
+       //console.log(El);
+        var w = 600, h = 500;
+        var left = ($(window).width/2)-(w/2);
+        var top = ($(window).height/2)-(h/2);
+        return window.open($(El).attr('href'), 'Distribuie', 'toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no, copyhistory=no, width='+w+', height='+h+', top='+top+', left='+left);
+    },
+    
+    fixedMenu : function(){
+        $(document).on('scroll' , function(){
+            var top = $('body').scrollTop();
+            if(top > 130){
+                $('.row.cat-main').addClass('tpfx');
+            } else {
+                $('.row.cat-main').removeClass('tpfx');
+            }
+        });  
+    },
+    
     initialize : function(){
         this.marquee();  
         this.carouFredSel();
+        this.fixedMenu();
     }
 };
 
