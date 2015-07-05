@@ -8,7 +8,7 @@
         <div class="">
             <a href="<?php echo $slide->getUrl();?>">
                 <img src="<?php echo $slide->getImage()->getMedium()?>" alt="" />
-                <h4 class="ml15 mr15" style="word-break : break-all;"><?php echo $slide->getTitle();?></h4>    
+                <p class="ml15 mr15 mt10" style=""><?php echo $slide->getTitle();?></p>    
             </a>
             
             <!--<p class="ml15"><?php echo $slide->getContent();?></p>-->

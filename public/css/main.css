@@ -335,9 +335,14 @@ ul.featured > li {
     float : left;
     margin-right : 3px;
     margin-left : 3px;
+    box-shadow : 1px 1px 5px 1px rgba(0,0,0,.25);
+    height : 310px;
 }
 
 .crs > div > a > img{width : 100%;}
+.crs > div > a > p {
+    font-weight : bold; color : black; font-family : Oswald;
+}
 
 .cat-main{
     background-color: rgb(134, 37, 37);

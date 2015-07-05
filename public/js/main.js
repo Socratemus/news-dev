@@ -21,7 +21,7 @@ var app = {
             circular: true,
             responsive : true,
             items                : 4,
-            // height : 300,
+            height : 320,
             direction            : "left",
             scroll : {
                 items            : 1,
