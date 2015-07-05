@@ -56,3 +56,5 @@ $route['translate_uri_dashes'] = FALSE;
 $route['(:num)/(:num)'] = 'landing/month';
 $route['c/(:any)'] = 'landing/category';
 $route['a/(:any)'] = 'landing/article';
+$route['tag/(:any)'] = 'landing/tag';
+$route['page/(:any)'] = 'landing/page';

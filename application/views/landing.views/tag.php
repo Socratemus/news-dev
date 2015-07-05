@@ -1,5 +1,5 @@
 <div class="col-md-12 mt15" >
-    <h1 class="col-md-12 extended title"><span><?php echo $category->getTitle();?></span></h1>    
+    <h1 class="col-md-12 extended title"><span><?php echo $tag->getTitle();?></span></h1>    
     
     <div class="clearfix"></div>
     
@@ -11,7 +11,7 @@
     <div class="col-md-8">
         
         <?php $i = 0;?>
-        <?php foreach($articles as $article) : $i++;?>
+        <?php foreach($tag->getStories() as $article) : $i++;?>
         <article class="hz">
             
             <div class=" cv col-xs-5">
@@ -44,22 +44,7 @@
         <h3>Nu s-au gasit articole.</h3>
         <?php endif;?>
         
-        <div class="bs-example <?php echo $i == 0 ? 'hide' : '';?>" style="text-align : center;">
-            <?php 
-                $currPage = $this->input->get('page');
-                $currPage = $currPage ? $currPage : 1; 
-                $prev = $currPage == 1 ? 1 : $currPage - 1;
-                $next = $currPage == $pages ? $pages : $currPage + 1;
-            ?>
-            <ul class="pagination">
-                <li><a href="<?php echo site_url('/c/'.$category->getSlug().'?page=' . $prev);?>">&laquo;</a></li>
-                <?php for($i = 1 ; $i<= $pages ; $i++) :?>
-                <li><a href="<?php echo site_url('/c/'.$category->getSlug().'?page=' . $i);?>"><?php echo $i;?></a></li>
-                <?php endfor;?>
-                
-                <li><a href="<?php echo site_url('/c/'.$category->getSlug().'?page=' . $next);?>">&raquo;</a></li>
-            </ul>
-        </div>
+        
         
     </div>
     

@@ -15,7 +15,9 @@ $config = array(
         array('name' => 'Content-type', 'content' => 'text/html; charset=utf-8', 'type' => 'equiv'),
         array('name' => 'content-language', 'content' => 'ro', 'type' => 'equiv'),
         array('name' => 'cache-control', 'content' => 'no-cache', 'type' => 'equiv'),
-        array('name' => 'pragma', 'content' => 'no-cache', 'type' => 'equiv')
+        array('name' => 'pragma', 'content' => 'no-cache', 'type' => 'equiv'),
+        array('name' => 'fb:app_id', 'content' => '448407545284216', 'type' => 'property')
+        
     ),
     'css' => array(
         'public/addons/bootstrap-3.3.4-dist/css/bootstrap.css',

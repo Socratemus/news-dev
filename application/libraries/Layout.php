@@ -8,6 +8,7 @@ class Layout
     public $viewFolder = null;
     public $layoutsFodler = 'layouts';
     public $layout = 'default';
+    private $vars = array();
     
     protected $meta = array();
     
@@ -38,8 +39,6 @@ class Layout
 
     function render($Payload = array())
     {
-        
-        
         $controller = $this->obj->router->fetch_class();
         $method = $this->obj->router->fetch_method();
         $viewFolder = !($this->viewFolder) ? $controller.'.views' : $this->viewFolder . '.views';
@@ -52,7 +51,10 @@ class Layout
         
         $loadedData['data']['meta'] = $this->getMeta();
         
+        $loadedData['data']  = array_merge($loadedData['data'] , $this->vars);
+        
         $layoutPath = '/'.$this->layoutsFodler.'/'.$this->layout;
+        
         $this->obj->load->view($layoutPath, $loadedData);
     }
     
@@ -83,5 +85,8 @@ class Layout
         array_push($this->meta , $meta);
     }
     
+    public function addVariable($Key , $Value){
+        $this->vars[$Key] = $Value;
+    }
 }
 ?>

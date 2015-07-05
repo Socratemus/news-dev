@@ -145,6 +145,7 @@ class Admin extends _Controller {
 			$this->load->model('Article_model' ,'articleModel');
 			$this->load->model('Category_model' ,'categoryModel');
 			$this->load->model('Image_model' ,'imageModel');
+			$this->load->model('Tag_model' ,'tagModel');
 			
 			$authors = $this->user_model->getAuthors();
 			
@@ -179,13 +180,13 @@ class Admin extends _Controller {
 			}
 			
 			$categories = $this->categoryModel->getAll();
-			
+			$tags = $this->tagModel->getAll();
 			$addons = array('jQuery-tagEditor-master', 'ckeditor', 'jQueryUI' , 'datetimepicker');
 			$this->headscript->addAddons($addons);
 			$this->headlink->addAddons($addons);
 			
 		    $this->layout->setLayout('admin/admin_layout');
-			$this->layout->render(array('categories' => $categories , 'authors' => $authors));
+			$this->layout->render(array('categories' => $categories , 'authors' => $authors , 'tags' => $tags ));
 		}
 		catch(\Exception $e){
 			$this->error($e);
@@ -215,7 +216,6 @@ class Admin extends _Controller {
 			$article = $this->articleModel->getById($id);
 			
 			$this->form_validation->set_rules('Title', 'Title', 'required');
-	    	// $this->form_validation->set_rules('Slug', 'Slug', 'required');
 			
 			if($this->isPost()){
 				
@@ -273,16 +273,102 @@ class Admin extends _Controller {
 	    
 	}
 	
+	
+	public function motd(){
+		try 
+		{
+			$this->load->helper('file');
+			$motdFile = 'application/cache/motd.conf.json';
+			if(file_exists($motdFile)){
+        		$json = file_get_contents($motdFile);
+        		$data = json_decode($json, true);
+        		
+        	} else {
+        		$data = array(
+        			date('Y-m-d') => array('My first message of the day.')
+    			);
+    			
+    			$json = json_encode($data);
+    			if ( ! write_file($motdFile, $json))
+				{
+				     echo 'Unable to write the file'; exit();
+				}
+        	}
+        	
+        	if(isset($data[date('Y-m-d')])){
+        		$var = $data[date('Y-m-d')];
+        	} else {
+        		end($data); $key = key($data);
+        		$var = $data[$key];
+        	}
+			
+			if($this->isPost()){
+				$motd = $this->input->post('motd');
+				if($motd){
+					$data[date('Y-m-d')] = array($motd);
+					$json = json_encode($data);
+					if ( ! write_file($motdFile, $json))
+					{
+					     echo 'Unable to write the file'; exit();
+					}
+				}
+				redirect('admin/motd');
+			}
+			
+			$this->layout->setLayout('admin/admin_layout');
+			$this->layout->render(array('current' => $var , 'all' => $data));
+		}
+		catch(\Exception $e){
+			$this->error($e);
+		}
+	}
 	/**
 	 * Edit seo configuration.
 	 */
 	 public function seo(){
 	    try 
         {
+        	$this->load->helper('file');
         	
+        	$seoFile =  'application/cache/seo.conf.json';
+        	if(file_exists($seoFile)){
+        		$json = file_get_contents($seoFile);
+        		$data = json_decode($json, true);
+        		
+        	} else {
+        		$data = array(
+        			'title' => '',
+        			'description' => '',
+        			'keywords' => '',
+        			'publisher' => '',
+        			'news_keywords' => ''
+    			);
+    			
+    			$json = json_encode($data);
+    			
+    			if ( ! write_file($seoFile, $json))
+				{
+				     echo 'Unable to write the file'; exit();
+				}
+				else
+				{
+				     //echo 'File written!';
+				}
+        	}
         	
-        	$this->layout->setLayout('admin/admin_layout_test');
-			$this->layout->render(array());
+        	if($this->isPost()){
+        		$post = $this->input->post();
+        		
+        		if ( ! write_file($seoFile, json_encode($post)))
+				{
+				     echo 'Unable to write the file'; exit();
+				}
+				redirect('admin/seo');
+        		
+        	}
+        	
+        	$this->layout->setLayout('admin/admin_layout');
+			$this->layout->render(array('data' => $data));
         }
         catch(\Exception $e)
         {

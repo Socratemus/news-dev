@@ -23,7 +23,17 @@
                     </a>
                 </h3>
                 <?php $pubDate = $article->getPubDate()->format('d') . ' ' . Utils::getMonth($article->getPubDate()->format('m')) . ', ' . $article->getPubDate()->format('Y');  ?>
-                <p class="pub-data">By <a href="" class="author">Cornelius Maximus</a> <span class="pub-date"><?php echo $pubDate;?></span> <a href="">0 comments</a></p>
+                <p class="pub-data">
+                    <?php $author = $article->getAuthor();?>
+                    <?php if($author) : ?>
+                    Scris de <a href="javascript:void(0)" class="author"><?php echo $author->getFirstname() . ' ' . $author->getLastname();?></a> 
+                    <?php else : ?>
+                    Scris de <a href="" class="author">Anonim</a> 
+                    <?php endif;?>
+                    
+                    <span class="pub-date"><?php echo $pubDate;?></span>
+                    <!--<a href="">0 comments</a>-->
+                </p>
                 <p><?php echo $article->getShortDescription();?></p>
             </div>
             <div class="clearfix"></div>

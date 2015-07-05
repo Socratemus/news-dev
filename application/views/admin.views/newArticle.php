@@ -133,15 +133,28 @@
 
 
 
-
+<?php
+    $initial = array();
+    $allTags = array();
+    
+    
+    foreach($tags as $tg){
+        // echo $tg->getTitle();
+        array_push($allTags , $tg->getTitle());
+    }
+    $initial = json_encode($initial);
+    $allTags = json_encode($allTags);
+?>
 <script type="text/javascript">
+    var initialTags = <?php echo $initial;?>;
+    var allTags = <?php echo $allTags;?>;
     $().ready(function(){
         //ADD JQUERY UI TO ENABLE AUTOCOMPLETE!!
         $('#demo2').tagEditor({
             autocomplete: {
                 delay: 0, // show suggestions immediately
                 position: { collision: 'flip' }, // automatic menu position up/down
-                source: ['ActionScript', 'AppleScript', 'Asp','Python', 'Ruby']
+                source: allTags
             },
             forceLowercase: false,
             placeholder: 'Cuvinte cheie ale stirii'

@@ -15,4 +15,12 @@ class Tag_model extends CI_Model {
         $tags = $this->doctrine->em->getRepository('Entity:Tag')->findAll();
         return $tags;
     }   
+    
+    public function getBySlug($Slug) {
+         $tags = $this->doctrine->em->getRepository('Entity:Tag')->findBy(array('Slug' => $Slug));
+         if(isset($tags[0])){
+             return $tags[0];
+         }
+         throw new \Exception('Tag not found.');
+    }
 }

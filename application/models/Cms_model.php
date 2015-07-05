@@ -38,6 +38,17 @@ class Cms_model extends CI_Model {
         throw new \Exception('This CMS page was not found.');
     }
     
+    /**
+     * Intoarce o pagina de cms dupa un slug dat.
+     */
+    public function getBySlug($Slug){
+        $page = $this->doctrine->em->getRepository('Entity:Page')->findBy(array('Slug' => $Slug , 'Status' => 1));
+        if(isset($page[0])){
+            return $page[0];
+        }
+        throw new \Exception('This CMS page was not found.');
+    }
+    
     public function add($Data){
         
         $page = new \models\Entities\Page();

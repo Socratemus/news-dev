@@ -63,6 +63,7 @@ class Category extends AbstractEntity {
     
     /**
      * @OneToMany(targetEntity="Story", mappedBy="Category")
+     * @OrderBy({"PubDate" = "Desc"})
      **/
     private $Stories;
     

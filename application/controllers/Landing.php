@@ -10,6 +10,29 @@ class Landing extends CI_Controller {
     	parent::__construct();
     	//loading slider model
     	$this->load->model('Slider_model' , 'sliderModel');
+    	
+    	//Loading meta
+    	$seoFile =  'application/cache/seo.conf.json';
+    	if(file_exists($seoFile)){
+    		$json = file_get_contents($seoFile);
+    		$data = json_decode($json, true);
+    		foreach($data as $mk => $mv){
+    			$this->layout->addMeta(array('name' => $mk, 'content' =>$mv));
+    		}
+    		$this->layout->addMeta(array('name' => 'og:image', 'content' => 'http://sociimedia.com/wp-content/uploads/2014/02/24hour.jpg' , 'type' => 'property'));
+    	}
+    	
+    	$motdFile = 'application/cache/motd.conf.json';
+    	if(file_exists($motdFile)){
+    		$json = file_get_contents($motdFile);
+    		$data = json_decode($json, true);
+    		end($data); $key = key($data);
+    		$motd = $data[$key];
+    		$this->layout->addVariable('motd', $motd[0]);
+    		//var_dump($motd[0]);exit;
+    		
+    	}
+    	
     }
     
 	public function index()
@@ -108,6 +131,42 @@ class Landing extends CI_Controller {
 			
 		}
 		catch(\Exception $e)
+		{
+			$this->error($e);
+		}
+	}
+	
+	/**
+	 * Afiseaza pagina dupa taguri
+	 */
+	public function tag(){
+		try
+		{
+			$slug= $this->uri->segment(2);
+			$tag = $this->tag_model->getBySlug($slug);
+			
+			$this->layout->render(array('tag' => $tag));
+		}
+		catch( \Exception $e)
+		{
+			$this->error($e);
+		}
+	}
+	
+	/**
+	 * Afiseaza o pagina statica de CMS
+	 */
+	public function page(){
+		try
+		{
+			$slug= $this->uri->segment(2);
+			$this->load->model('cms_model');
+			$page = $this->cms_model->getBySlug($slug);
+			//exit('okey');
+			//$tag = $this->tag_model->getBySlug($slug);
+			$this->layout->render(array('page' =>$page));
+		}
+		catch( \Exception $e)
 		{
 			$this->error($e);
 		}

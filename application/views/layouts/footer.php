@@ -11,17 +11,15 @@
         
         <ul class="pl0">
             <li>
-                <a href="">Log in</a>
+                <a href="<?php echo site_url('page/about-us')?>">Despre noi</a>
             </li>
             <li>
-                <a href="">Entries RSS</a>
+                <a href="<?php echo site_url('page/contact')?>">Contacteaza-ne</a>
             </li>
             <li>
-                <a href="">Comments RSS</a>
+                <a href="<?php echo site_url('page/anunturi')?>">Anunturi</a>
             </li>
-            <li>
-                <a href="">RealitateaTV</a>
-            </li>
+            
         </ul>
         
     </div>

@@ -39,6 +39,7 @@ class Tag extends AbstractEntity
     
     /**
      * @ManyToMany(targetEntity="Story", mappedBy="Tags")
+     * @OrderBy({"PubDate" = "Desc"})
      **/
     private $Stories;
     

@@ -85,6 +85,7 @@
                           <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
                             <li><a href="<?php echo site_url('/admin/seo')?>">SEO</a></li>
                             <li><a href="<?php echo site_url('/admin/slider')?>">Slider</a></li>
+                            <li><a href="<?php echo site_url('/admin/motd')?>">Mesajul zilei</a></li>
                           </ul>
                         </div>
                     </li>

@@ -16,19 +16,23 @@
         <div class="row">
             <div class="col-xs-12">
                 <label>Meta Title</label>
-                <input type="text" name="" value="" class="form-control">
+                <input type="text" name="title" value="<?php echo $data['title']?>" class="form-control">
             </div>
             <div class="col-xs-12">
                 <label>Meta Description</label>
-                <textarea class="form-control" rows="4"></textarea>
+                <textarea class="form-control" name="description" rows="4"><?php echo $data['description']?></textarea>
             </div>
             <div class="col-xs-12">
                 <label>Meta Keywords</label>
-                <input type="text" name="" value="" class="form-control">
+                <input type="text" name="keywords" value="<?php echo $data['keywords']?>" class="form-control">
+            </div>
+            <div class="col-xs-12">
+                 <label>News Keywords</label>
+                <input type="text" name="news_keywords" value="<?php echo $data['news_keywords']?>" class="form-control">
             </div>
             <div class="col-xs-12">
                 <label>Meta Publisher</label>
-                <input type="text" name="" value="" class="form-control">
+                <input type="text" name="publisher" value="<?php echo $data['publisher']?>" class="form-control">
             </div>
         </div>
         
