@@ -1,7 +1,7 @@
 <div class="header-top row">
     
     <div class="col-md-3 ">
-        <h1 class="mt5 pl50"><img width="170" src="<?php echo base_url('/public/img/logo_original.png');?>" alt="Top24h" /></h1>
+        <a href="<?php echo base_url();?>" class="mt5 block pl50"><img width="170" src="<?php echo base_url('/public/img/logo_original.png');?>" alt="Top24h" /></a>
     </div>
     
     <div class="col-md-7">

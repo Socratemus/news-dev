@@ -130,7 +130,7 @@
             </div>
             <div class="col-xs-12">
                 <?php $shortDescriptionValue = set_value('ShortDescription') ;?>
-                <textarea name="ShortDescription" id="ArticleShort" rows=2><?php echo $shortDescriptionValue? $shortDescriptionValue : $article->getShortDescription();?></textarea>
+                <textarea name="ShortDescription" rows="5" class="form-control" id="ArticleShort" rows=2><?php echo $shortDescriptionValue? $shortDescriptionValue : $article->getShortDescription();?></textarea>
             </div>
             
         </div>
@@ -192,7 +192,7 @@
             placeholder: 'Cuvinte cheie ale stirii'
         });
         jQuery('#datetimepicker').datetimepicker();
-        CKEDITOR.replace( 'ArticleShort' );
+        // CKEDITOR.replace( 'ArticleShort' );
         CKEDITOR.replace( 'ArticleLong' );
         admin.article.initialize();
     });
