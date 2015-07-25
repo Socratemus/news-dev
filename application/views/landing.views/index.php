@@ -94,7 +94,7 @@
     
     <div class="col-md-8">
         <h3 class="title">
-            <span>Latest News</span>
+            <span>Cele mai recente stiri</span>
         </h3>
         <?php foreach($recents as $article) : ?>
         <article class="hz">

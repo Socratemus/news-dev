@@ -25,7 +25,7 @@ var app = {
             direction            : "left",
             scroll : {
                 items            : 1,
-                easing            : "elastic",
+                easing            : "",
                 duration        : 1000,
                 pauseOnHover    : true
             }

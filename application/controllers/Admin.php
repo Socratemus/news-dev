@@ -270,7 +270,11 @@ class Admin extends _Controller {
 	 * Starge un articol
 	 */
 	public function removeArticle(){
+	    $id = $this->input->get('id');
+	    $article = $this->article_model->getById($id);
 	    
+	    var_dump($article);
+	    echo '1';
 	}
 	
 	
