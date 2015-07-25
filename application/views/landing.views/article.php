@@ -1,8 +1,22 @@
 <!--<div class="row article-main">-->
-    
+    <div class="col-md-12 mt15 text-center">
+        
+        
+        
+    </div>
     <div class="col-md-12 extended mt15" style="border-bottom : 1px solid #eee;">
         
-        <h1 class="title-big col-md-12"><?php echo $article->getTitle();?></h1>    
+        <div class="col-md-8 extended">
+            <h1 class="title-big col-md-12"><?php echo $article->getTitle();?></h1>        
+        </div>
+            
+        <div class="col-md-4">
+            <div class="box_" style="float : right;margin : auto;width: 300px; height : 250px; border:1px solid #ccc;">
+                <!--test-->
+            </div>
+        </div>
+        <div class="clearfix"></div>
+        
         
         <div class="mt20 mb10 col-md-5">
             <?php $author = $article->getAuthor();?>

@@ -18,7 +18,7 @@
         <ul class="main-menu nav nav-bar ml45">
             
             <li>
-                <a href="<?php echo site_url();?>">Acasa</a>
+                <a href="<?php echo site_url();?>">● Acasa</a>
             </li>
             <?php $menucts = $this->category_model->getPrimaryMenuCategories()?>
             <?php foreach($menucts as $menu) :?>
