@@ -7,6 +7,8 @@
         <?php echo $this->headlink;?>
         
         <?php echo $this->headscript;?>
+        <link rel="icon" type="image/x-icon" href="<?php echo base_url('favicon.ico?v=2')?>"/>
+        <link rel="shortcut icon" type="image/vnd.microsoft.icon" href="<?php echo base_url('favicon.ico')?>"/>
         <title>TOP24H - Top NEWS 24H A DAY</title>
     </head>
     

@@ -38,7 +38,7 @@ class Tag extends AbstractEntity
     protected $Updated;
     
     /**
-     * @ManyToMany(targetEntity="Story", mappedBy="Tags")
+     * @ManyToMany(targetEntity="Story", mappedBy="Tags", cascade="persist")
      * @OrderBy({"PubDate" = "Desc"})
      **/
     private $Stories;

@@ -114,7 +114,13 @@ class Admin extends _Controller {
 	 * Sterge o categorie
 	 */
 	public function removeCategory(){
-	    
+	    $id = $this->input->get('id');
+	    $em = $this->doctrine->em;
+	    $cat = $em->getRepository('Entity:Category')->findOneBy(array('CategoryId' => $id));
+	    $em->remove($cat);
+	    $em->flush();
+	    redirect('admin/categories');
+	    echo $id;
 	}
 	
 	/**
@@ -272,9 +278,11 @@ class Admin extends _Controller {
 	public function removeArticle(){
 	    $id = $this->input->get('id');
 	    $article = $this->article_model->getById($id);
+	    $em = $this->doctrine->em;
+	    $em->remove($article);
+		$em->flush();
+	    redirect('admin/articles');
 	    
-	    var_dump($article);
-	    echo '1';
 	}
 	
 	

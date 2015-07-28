@@ -24,7 +24,7 @@
                 <ul class="admin-nav">
                     
                     <li class="active"> 
-                        <a href="">
+                        <a href="<?php echo site_url('admin');?>">
                             <i class="fa fa fa-align-justify"></i>
                             Dashboard
                         </a>

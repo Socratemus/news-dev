@@ -79,9 +79,9 @@ class Story extends AbstractEntity {
     private $Comments;
     
     /**
-     * @ManyToMany(targetEntity="Tag", inversedBy="Stories")
+     * @ManyToMany(targetEntity="Tag", inversedBy="Stories" , cascade="persist")
      * @JoinTable(name="stories_tags",
-     *      joinColumns={@JoinColumn(name="StoryId", referencedColumnName="StoryId")},
+     *      joinColumns={@JoinColumn(name="StoryId", referencedColumnName="StoryId" ,  onDelete="CASCADE")},
      *      inverseJoinColumns={@JoinColumn(name="TagId", referencedColumnName="TagId" , onDelete="CASCADE")}
      *      )
      **/

@@ -73,7 +73,7 @@
                                     <a href="<?php echo site_url('/admin/editCmsPage?id=' . $page->getPageId());?>" data-original-title="" title="">Edit</a>
                                 </li>
                                 <li>
-                                    <a href="<?php echo site_url('/admin/removeArticle?id=' . $page->getPageId());?>" data-original-title="" title="">Delete</a>
+                                    <a href="<?php echo site_url('/admin/removeCmsPage?id=' . $page->getPageId());?>" data-original-title="" title="">Delete</a>
                                 </li>
                             </ul>
                         </div>

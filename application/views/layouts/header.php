@@ -5,7 +5,7 @@
     </div>
     
     <div class="col-md-7">
-        <div class="pub-zone">
+        <div class="pub-zone" style="border : 1px solid #ccc">
             
         </div>
         

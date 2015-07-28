@@ -5,16 +5,19 @@
         
     </div>
     <div class="col-md-12 extended mt15" style="border-bottom : 1px solid #eee;">
+        <!--970 250-->
         
-        <div class="col-md-8 extended">
-            <h1 class="title-big col-md-12"><?php echo $article->getTitle();?></h1>        
-        </div>
-            
-        <div class="col-md-4">
-            <div class="box_" style="float : right;margin : auto;width: 300px; height : 250px; border:1px solid #ccc;">
+        <div class="col-md-12">
+            <div class="box_" style="margin : auto;width: 970px; height : 250px; border:1px solid #ccc;">
                 <!--test-->
             </div>
         </div>
+        
+        <div class="col-md-12 extended">
+            <h1 class="title-big col-md-12"><?php echo $article->getTitle();?></h1>        
+        </div>
+            
+        
         <div class="clearfix"></div>
         
         
@@ -23,7 +26,7 @@
             <p class="pub-data">
                 Scris de 
                 <?php if($author ) : ?>
-                <a href="javascript:void(0);" class="author"></a> 
+                <span class="author"><?php echo $author->getFirstname() . ' ' . $author->getLastname(); ?></span> 
                 <?php else : ?>
                 <a href="javascript:void(0);" class="author">Anonim</a> 
                 <?php endif;?>
