@@ -1,7 +1,7 @@
 <?php $slides =  $this->sliderModel->getAllActive(); ?>
 
 
-<div class="col-md-12 extended mb25" style="margin-top : 3px">
+<div class="col-md-12 extended mb25 hidden-sm hidden-xs" style="margin-top : 3px">
     <div class="crs" id="Crs">
         
         <?php foreach($slides as $slide) :?>
@@ -99,10 +99,10 @@
         <?php foreach($recents as $article) : ?>
         <article class="hz">
             
-            <div class=" cv col-xs-5">
+            <div class="cv col-md-5 col-xs-12">
                 <img src="<?php echo $article->getCover()->getMedium();?>" alt="<?php echo $article->getTitle();?>" /> 
             </div>
-            <div class="col-xs-7">
+            <div class="col-xs-12 col-md-7">
                 <h3 class="article-title mt0">
                     <a href="<?php echo site_url('/a/' . $article->getSlug())?>">
                         <?php echo $article->getTitle();?>
@@ -141,7 +141,7 @@
         </div>
     </div>    
         
-    <div class="col-md-4">
+    <div class="col-md-4" style="overflow : hidden;">
          
          
         <div class="" style="margin : auto;    width : 300px; height : 600px; border : 0px solid gray;">

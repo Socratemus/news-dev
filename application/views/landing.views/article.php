@@ -1,9 +1,9 @@
 <!--<div class="row article-main">-->
     
-    <div class="col-md-12 extended mt15" style="border-bottom : 1px solid #eee; overflow : hidden;">
+    <div class="col-md-12 extended pt15" style="border-bottom : 1px solid #eee; overflow : hidden;">
         <!--970 250-->
         
-        <div class="col-md-12">
+        <div class="col-md-12" style="overflow : hidden">
             <div class="box_" style="margin : auto;width: 970px; height : 250px; border:0px solid #ccc;">
                <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
                 <!-- jeg -->
@@ -56,7 +56,7 @@
     
     <div class="col-md-12 extended mt20 mb40">
         
-        <article class="article col-md-8">
+        <article class="article col-md-8" style="overflow : hidden">
             
             
             <div class="cv mb15">
@@ -87,10 +87,10 @@
            
             <?php $author = $article->getAuthor(); if($author) : ?>
             <footer class="article-footer">
-                <div class="col-md-2 extended cv author">
+                <div class="col-md-2 hidden-xs col-sm-2 extended cv author">
                     <img src="<?php echo $author->getCover()->getMedium();?>" alt="author" />
                 </div>
-                <div class="col-md-10">
+                <div class="col-md-10 col-sm-9 col-sm-offset-1">
                     
                     <h3 class="mt10"><span>Scris de</span> <?php echo $author->getFirstname() . ' ' . $author->getLastname() ; ?> </h3>
                     <p class="mt15"><?php echo $author->getQuota();?></p>

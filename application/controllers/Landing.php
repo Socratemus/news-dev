@@ -19,7 +19,7 @@ class Landing extends CI_Controller {
     		foreach($data as $mk => $mv){
     			$this->layout->addMeta(array('name' => $mk, 'content' =>$mv));
     		}
-    		$this->layout->addMeta(array('name' => 'og:image', 'content' => 'http://sociimedia.com/wp-content/uploads/2014/02/24hour.jpg' , 'type' => 'property'));
+    		//$this->layout->addMeta(array('name' => 'og:image', 'content' => 'http://sociimedia.com/wp-content/uploads/2014/02/24hour.jpg' , 'type' => 'property'));
     	}
     	
     	$motdFile = 'application/cache/motd.conf.json';

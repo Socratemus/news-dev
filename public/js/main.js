@@ -101,17 +101,34 @@ var app = {
                 $('#FacebookLikeAndShare').modal('show');
             }
             localStorage.setItem("popupdisplayed", true);
-            document.getElementById("result").innerHTML = localStorage.getItem("lastname");
+            
         } else {
             // Sorry! No Web Storage support..
             return;
         }
+    },
+    mobileMenu : function(){
+        
+        $('#MbTgl').click(function(){
+            
+            if($('#SdMn').hasClass('open'))
+            {
+                $('#SdMn').removeClass('open');
+            }
+            else
+            {
+                $('#SdMn').addClass('open');
+            }
+            
+            return false; 
+        });
     },
     initialize : function(){
         this.marquee();  
         this.carouFredSel();
         this.fixedMenu();
         this.likeModal();
+        this.mobileMenu();
     }
 };
 

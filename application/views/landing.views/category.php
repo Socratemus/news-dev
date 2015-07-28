@@ -1,4 +1,4 @@
-<div class="col-md-12 mt15">
+<div class="col-md-12 pd15" style="overflow : hidden">
     <div class="box_" style="margin : auto;width: 970px; height : 250px; border:0px solid #ccc;">
        <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
         <!-- jeg -->

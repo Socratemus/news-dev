@@ -402,3 +402,46 @@ ul.featured > li {
     text-transform: uppercase;
     color: rgba(0, 0, 0, 0.89);
 }
+
+
+@media (min-width: 320px) and (max-width : 778px) {
+  .header-top{
+      /*background : red;*/
+  }
+  
+  #Wrapper{
+      padding : 0;
+  }
+  #Wrapper:before , #Wrapper:after{
+      display : none;
+  }
+  #MbTgl{
+      display : inline-block;
+      font-size : 32px;
+      margin-top: 25px;
+  }
+  
+  #SdMn {
+        position: fixed;
+        width : 80%;
+        height : 100%;
+        background : black;
+        z-index : 3;
+        box-shadow : 1px 1px 15px 1px rgba(0,0,0,.85);
+        left :-150%; top :0;
+        color : #FFF;
+        padding : 15px;    
+        transition : left .4s ease-in-out;
+  }
+  
+  #SdMn.open{
+        left: 0;
+  }
+  .sidebar-content .main-menu{
+      border-top : 1px solid white;
+  }
+  .sidebar-content .main-menu li{
+      border-bottom : 1px solid white; 
+  }
+  .sidebar-content .main-menu li a {float : initial;}
+}
