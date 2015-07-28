@@ -109,7 +109,7 @@ var app = {
     },
     mobileMenu : function(){
         
-        $('#MbTgl').click(function(){
+        $('#MbTgl').on('click touchstart' , function(){
             
             if($('#SdMn').hasClass('open'))
             {
