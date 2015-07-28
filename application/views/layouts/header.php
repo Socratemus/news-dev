@@ -25,7 +25,7 @@
   </div>
 </div>
 
-<div id="SdMn">
+<div id="SdMn" class="visible-xs">
     <div class="sidebar-content">
         <div class="text-center"> 
             <h3 class="no-margin">Top24h</h3>
@@ -60,7 +60,7 @@
     </div>
     <div class="col-xs-2 visible-xs">
         <a id="MbTgl" href=""><i class="fa fa-bars"></i></a>
-    <div>
+    </div>
     <div class="col-md-8 hidden-sm hidden-xs">
         <div class="pub-zone" style="border : 0px solid #ccc">
             <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
@@ -76,7 +76,6 @@
         
     </div>
     <div class="clearfix"></div>
-    
 </div>
 
 <div class="row cat-main hidden-xs">
