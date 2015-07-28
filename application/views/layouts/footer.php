@@ -1,19 +1,6 @@
 <div class="row footer-top">
     <div class="col-md-10 col-md-offset-1">
         <div class="col-md-4">
-            <!--<h3 class="mb15">Abous Us</h3>-->
-            <!--/ GTop.ro - (begin) v2.1/-->
-            <script type="text/javascript" language="javascript">
-            var site_id = 78151;
-            var gtopSiteIcon = 19;
-            var _gtUrl = (("https:" == document.location.protocol) ? "https://secure." : "http://fx.");
-            document.write(unescape("%3Cscript src='" + _gtUrl + "gtop.ro/js/gTOP.js' type='text/javascript'%3E%3C/script%3E"));
-            </script>
-            <!--/ GTop.ro - (end) v2.1/-->
-            <!--<p>TO BE CONTINUED...</p>-->
-        </div>
-        
-        <div class="col-md-4">
             <h3 class="mb15">Meta</h3>
             
             <ul class="pl0">
@@ -57,6 +44,20 @@
                 <a class="pinterest" href=""><i class="fa fa-pinterest"></i></a>
             </p>
         </div>
+        
+        <div class="col-md-4">
+            <!--<h3 class="mb15">Abous Us</h3>-->
+            <!--/ GTop.ro - (begin) v2.1/-->
+            <script type="text/javascript" language="javascript">
+            var site_id = 78151;
+            var gtopSiteIcon = 19;
+            var _gtUrl = (("https:" == document.location.protocol) ? "https://secure." : "http://fx.");
+            document.write(unescape("%3Cscript src='" + _gtUrl + "gtop.ro/js/gTOP.js' type='text/javascript'%3E%3C/script%3E"));
+            </script>
+            <!--/ GTop.ro - (end) v2.1/-->
+            <!--<p>TO BE CONTINUED...</p>-->
+        </div>
+        
     </div>
     
 </div>
