@@ -382,3 +382,23 @@ ul.featured > li {
     /*border: 1px solid white;*/
     float: right;
 }
+
+#cookies {
+    background-color: #19191A;
+    color: #FFF
+    
+}
+
+#cookies > a{
+    display: inline-block;
+    border: 1px solid white;
+    /* padding: 3px; */
+    margin: 3px;
+    background-color: white;
+    padding-left: 3px;
+    padding-right: 3px;
+    line-height: 16px;
+    font-size: 13px;
+    text-transform: uppercase;
+    color: rgba(0, 0, 0, 0.89);
+}

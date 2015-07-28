@@ -1,6 +1,6 @@
 <!--<div class="row article-main">-->
     
-    <div class="col-md-12 extended mt15" style="border-bottom : 1px solid #eee;">
+    <div class="col-md-12 extended mt15" style="border-bottom : 1px solid #eee; overflow : hidden;">
         <!--970 250-->
         
         <div class="col-md-12">

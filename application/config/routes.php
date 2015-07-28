@@ -58,3 +58,4 @@ $route['c/(:any)'] = 'landing/category';
 $route['a/(:any)'] = 'landing/article';
 $route['tag/(:any)'] = 'landing/tag';
 $route['page/(:any)'] = 'landing/page';
+$route['cookies'] = 'landing/cookies';

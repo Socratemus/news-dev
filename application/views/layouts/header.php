@@ -1,3 +1,9 @@
+<?php if(! isset($_COOKIE['accept_cookie'])) :?>
+<div id="cookies" class="text-center row">
+    Acest site foloseşte cookies! Continuarea navigării implică acceptarea lor. Mai multe despre cookies.
+    <a href="<?php echo site_url('/cookies');?>">Ok</a>
+</div>
+<?php endif;?>
 <div class="header-top row">
     
     <div class="col-md-3 ">

@@ -45,7 +45,7 @@
             </div>
             
             <h3 class="article-title">
-                <a href=""><?php echo $first->getTitle();?></a>
+                <a href="<?php echo site_url('/a/' . $first->getSlug());?>"><?php echo $first->getTitle();?></a>
             </h3>
             
             <div class="meta-data">
@@ -144,7 +144,7 @@
     <div class="col-md-4">
          
          
-        <div class="" style="margin : auto;width : 300px; height : 600px; border : 0px solid gray;">
+        <div class="" style="margin : auto;    width : 300px; height : 600px; border : 0px solid gray;">
             <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
             <!-- baneer 300x600 home -->
             <ins class="adsbygoogle"

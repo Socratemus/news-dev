@@ -233,6 +233,11 @@ class Landing extends CI_Controller {
 		}
 	}
 	
+	public function cookies(){
+		setcookie ( 'accept_cookie' , 'true' ,  time() + 7 * 24 * 3600 , '/');
+		redirect('/');
+	}
+	
 	/**************************************************************************/
 	
 	private function error($Error){
