@@ -45,7 +45,7 @@
             </p>
         </div>
         
-        <div class="col-md-4">
+        <div class="col-md-4 mt25 pt50">
             <!--<h3 class="mb15">Abous Us</h3>-->
             <!--/ GTop.ro - (begin) v2.1/-->
             <script type="text/javascript" language="javascript">

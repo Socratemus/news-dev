@@ -91,11 +91,27 @@ var app = {
             }
         });  
     },
-    
+    likeModal : function(){
+        
+        if(typeof(Storage) !== "undefined") {
+            // Store
+            var wasDisplayed = localStorage.getItem('popupdisplayed');
+            if(!wasDisplayed){
+                localStorage.setItem("popupdisplayed", true);
+                $('#FacebookLikeAndShare').modal('show');
+            }
+            localStorage.setItem("popupdisplayed", true);
+            document.getElementById("result").innerHTML = localStorage.getItem("lastname");
+        } else {
+            // Sorry! No Web Storage support..
+            return;
+        }
+    },
     initialize : function(){
         this.marquee();  
         this.carouFredSel();
         this.fixedMenu();
+        this.likeModal();
     }
 };
 
