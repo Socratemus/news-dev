@@ -19,7 +19,7 @@ class Admin extends _Controller {
     
 	public function index()
 	{
-		
+		redirect('admin/articles');
 		$this->layout->setLayout('admin/admin_layout');
 		$this->layout->render();
 	}   
