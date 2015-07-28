@@ -59,7 +59,7 @@
         <a href="<?php echo base_url();?>" class="mt5 block pl50"><img width="170" src="<?php echo base_url('/public/img/logo_original.png');?>" alt="Top24h" /></a>
     </div>
     <div class="col-xs-2 visible-xs">
-        <a id="MbTgl" href=""><i class="fa fa-bars"></i></a>
+        <a id="MbTgl" href="" onclick="app.mobileMenuToggle(); return false;"><i class="fa fa-bars"></i></a>
     </div>
     <div class="col-md-8 hidden-sm hidden-xs">
         <div class="pub-zone" style="border : 0px solid #ccc">

@@ -107,10 +107,9 @@ var app = {
             return;
         }
     },
-    mobileMenu : function(){
+    mobileMenuToggle : function(){
         
-        $('#MbTgl').on('click touchstart' , function(){
-            
+     
             if($('#SdMn').hasClass('open'))
             {
                 $('#SdMn').removeClass('open');
@@ -121,7 +120,7 @@ var app = {
             }
             
             return false; 
-        });
+        
     },
     initialize : function(){
         this.marquee();  
