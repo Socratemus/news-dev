@@ -1,15 +1,19 @@
 <!--<div class="row article-main">-->
-    <div class="col-md-12 mt15 text-center">
-        
-        
-        
-    </div>
+    
     <div class="col-md-12 extended mt15" style="border-bottom : 1px solid #eee;">
         <!--970 250-->
         
         <div class="col-md-12">
-            <div class="box_" style="margin : auto;width: 970px; height : 250px; border:1px solid #ccc;">
-                <!--test-->
+            <div class="box_" style="margin : auto;width: 970px; height : 250px; border:0px solid #ccc;">
+               <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+                <!-- jeg -->
+                <ins class="adsbygoogle"
+                     style="display:inline-block;width:970px;height:250px"
+                     data-ad-client="ca-pub-5254465822978923"
+                     data-ad-slot="5924869097"></ins>
+                <script>
+                (adsbygoogle = window.adsbygoogle || []).push({});
+                </script>
             </div>
         </div>
         
@@ -59,6 +63,23 @@
                 <img src="<?php echo $article->getCover()->getBig();?>" alt="" />
             </div>    
             <div class="entry-content">
+                <div class="mb15 mt15  pr25 bold" style="">
+                    <h3><?php echo $article->getShortDescription();?></h3>
+                </div>
+                
+                
+                <div style="width : 160px ; height : 600px; border : 0px solid gray; float : left; margin-right : 25px;">
+                    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+                    <!-- banner articol -->
+                    <ins class="adsbygoogle"
+                         style="display:inline-block;width:160px;height:600px"
+                         data-ad-client="ca-pub-5254465822978923"
+                         data-ad-slot="7541203096"></ins>
+                    <script>
+                    (adsbygoogle = window.adsbygoogle || []).push({});
+                    </script>
+                </div>
+                
                 <?php echo $article->getLongDescription();?>
             </div>
             

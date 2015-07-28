@@ -91,7 +91,7 @@
 </div>
 
 <div class="col-md-12 main-bottom">
-    
+        
     <div class="col-md-8">
         <h3 class="title">
             <span>Cele mai recente stiri</span>
@@ -142,6 +142,19 @@
     </div>    
         
     <div class="col-md-4">
+         
+         
+        <div class="" style="margin : auto;width : 300px; height : 600px; border : 0px solid gray;">
+            <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+            <!-- baneer 300x600 home -->
+            <ins class="adsbygoogle"
+                 style="display:inline-block;width:300px;height:600px"
+                 data-ad-client="ca-pub-5254465822978923"
+                 data-ad-slot="5506066691"></ins>
+            <script>
+            (adsbygoogle = window.adsbygoogle || []).push({});
+            </script>
+        </div>
          
         <ul class="nav nav-tabs side-nav mb15">
             

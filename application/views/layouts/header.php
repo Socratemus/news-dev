@@ -4,9 +4,17 @@
         <a href="<?php echo base_url();?>" class="mt5 block pl50"><img width="170" src="<?php echo base_url('/public/img/logo_original.png');?>" alt="Top24h" /></a>
     </div>
     
-    <div class="col-md-7">
-        <div class="pub-zone" style="border : 1px solid #ccc">
-            
+    <div class="col-md-8">
+        <div class="pub-zone" style="border : 0px solid #ccc">
+            <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+                <!-- blogger mare nou -->
+            <ins class="adsbygoogle"
+                 style="display:inline-block;width:728px;height:90px"
+                 data-ad-client="ca-pub-5254465822978923"
+                 data-ad-slot="6524715497"></ins>
+            <script>
+            (adsbygoogle = window.adsbygoogle || []).push({});
+            </script>    
         </div>
         
     </div>

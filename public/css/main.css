@@ -378,7 +378,7 @@ ul.featured > li {
 }
 
 .pub-zone{
-    min-height: 75px;
-    margin-top: 19px;
-    border : 1px solid white;
+    margin-top: 10px;
+    /*border: 1px solid white;*/
+    float: right;
 }

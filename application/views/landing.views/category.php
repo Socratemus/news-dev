@@ -1,3 +1,17 @@
+<div class="col-md-12 mt15">
+    <div class="box_" style="margin : auto;width: 970px; height : 250px; border:0px solid #ccc;">
+       <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+        <!-- jeg -->
+        <ins class="adsbygoogle"
+             style="display:inline-block;width:970px;height:250px"
+             data-ad-client="ca-pub-5254465822978923"
+             data-ad-slot="5924869097"></ins>
+        <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+        </script>
+    </div>
+</div>
+
 <div class="col-md-12 mt15" >
     <h1 class="col-md-12 extended title"><span><?php echo $category->getTitle();?></span></h1>    
     
