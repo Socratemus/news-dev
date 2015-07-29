@@ -100,7 +100,9 @@
         <article class="hz">
             
             <div class="cv col-md-5 col-xs-12">
-                <img src="<?php echo $article->getCover()->getMedium();?>" alt="<?php echo $article->getTitle();?>" /> 
+                <a href="<?php echo site_url('/a/' . $article->getSlug())?>">
+                    <img width="100%" src="<?php echo $article->getCover()->getMedium();?>" alt="<?php echo $article->getTitle();?>" /> 
+                </a>
             </div>
             <div class="col-xs-12 col-md-7">
                 <h3 class="article-title mt0">

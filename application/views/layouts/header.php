@@ -1,6 +1,6 @@
 <?php if(! isset($_COOKIE['accept_cookie'])) :?>
 <div id="cookies" class="text-center row">
-    Acest site foloseşte cookies! Continuarea navigării implică acceptarea lor. Mai multe despre cookies.
+    Acest site foloseşte cookies! Continuarea navigării implică acceptarea lor. <a style="background : initial; border : initial;text-transform : initial; color : lightblue;" target="_blank" href="http://www.google.com/intl/ro/policies/technologies/cookies/">Mai multe despre cookies.</a>
     <a href="<?php echo site_url('/cookies');?>">Ok</a>
 </div>
 <?php endif;?>
