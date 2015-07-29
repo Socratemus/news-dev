@@ -72,6 +72,16 @@ class Layout
         foreach($this->meta as $mt){
             array_push($ret , $mt);
         }
+        foreach($ret as $key => $meta){
+            $duplicate = false;
+            for($i = $key + 1 ; $i < count($ret) ; $i++){
+                if($meta['name'] == $ret[$i]['name']) {
+                    $duplicate = true;
+                }
+                    
+            }
+            if($duplicate) unset($ret[$key]);
+        } 
         
         return $ret;
     }

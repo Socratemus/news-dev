@@ -76,15 +76,19 @@ class Landing extends CI_Controller {
 			
 			$addons = array('jqueryValidate');
 			$this->headscript->addAddons($addons);
-			
+			$this->headtitle->setTitle($article->getTitle());
 			/**
 			 * Facebook meta tags
 			 */
 			$this->layout->addMeta(array('name' => 'og:image', 'content' => $article->getCover()->getMedium(), 'type' => 'property'));
-			$this->layout->addMeta(array('name' => 'og:description', 'content' => $article->getTitle(), 'type' => 'property'));
+			$this->layout->addMeta(array('name' => 'og:description', 'content' => $article->getShortDescription(), 'type' => 'property'));
 			$this->layout->addMeta(array('name' => 'og:url', 'content' => site_url('/a/' . $article->getSlug()), 'type' => 'property'));
 			$this->layout->addMeta(array('name' => 'og:title', 'content' => $article->getTitle(), 'type' => 'property'));
 			$this->layout->addMeta(array('name' => 'og:type',  'content' => 'article', 'type' => 'property'));
+			
+			
+			
+			
 			
 			/**
 			 * Twitter meta tags
@@ -96,9 +100,14 @@ class Landing extends CI_Controller {
 			/**
 			 * Google plus meta tags
 			 */
+			 $this->layout->addMeta(array('name' => 'description', 'content' =>$article->getShortDescription()));
 			 
-			
-			
+			 $tags = $article->getTags();
+			 foreach($tags as $tag){
+			 	$this->layout->addMeta(array('name' => 'article:tag',  'content' => $tag->getTitle(), 'type' => 'property'));
+			 }
+			$this->layout->addMeta(array('name' => 'article:section',  'content' => $article->getCategory()->getTitle(), 'type' => 'property'));
+				
 			$this->layout->render(array(
 				'article' =>$article 
 				)
